@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-#import "MultiFormatReader.h"
 #import "HybridView.h"
 
 @interface ViewController ()
@@ -21,140 +20,6 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-//加载本地使用说明文件文件
--(void)loadDocument:(NSString *)docName
-{
-    NSString *mainBundleDirectory=[[NSBundle mainBundle] bundlePath];
-    NSString *path=[mainBundleDirectory stringByAppendingPathComponent:docName];
-    NSURL *url=[NSURL fileURLWithPath:path];
-    NSURLRequest *request=[NSURLRequest requestWithURL:url];
-    hybridView.scalesPageToFit=YES;
-
-    [hybridView loadRequest:request];
-}
-
-- (void)hybridCall:(HybridView*)webView data:(NSString *)json {
-    NSLog(@"json %@", json);
-    //json=[self decodeUrl:json];
-    json=[json stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSError *error = nil;
-    //IOS5自带解析类NSJSONSerialization从response中解析出数据放到字典中
-    NSDictionary *info = [NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableLeaves error:&error];
-    
-    NSString *method = [info objectForKey:@"method"];
-    NSString *callback = [info objectForKey:@"callback"];
-    
-    //NSLog(@"method %@", method);
-    if (nil == method)
-    {
-        json=[self toJsString:json];
-        [webView stringByEvaluatingJavaScriptFromString:[@"alert(\"" stringByAppendingFormat:@"%@\")", json]];
-        
-    } else if ([method isEqualToString:@"share"]) {
-        
-        
-        
-    } else if ([method isEqualToString:@"tip"]) {
-        NSString *params=[info objectForKey:@"params"];
-        [self tip:params];
-        
-    } else if ([method isEqualToString:@"takePhoto"]) {
-        self.pickImageCallback=callback;
-        
-        //判断是否支持相机
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-        {
-            // 跳转到相机或相册页面
-            UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-            
-            imagePickerController.delegate = self;
-            
-            imagePickerController.allowsEditing = YES;
-            
-            imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-            
-            [self presentViewController:imagePickerController animated:YES completion:^{}];
-            
-            [imagePickerController release];
-        }
-        else
-        {
-            UIAlertView *alertView =[[UIAlertView alloc] initWithTitle:nil message:@"相机不能用" delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles:nil];
-            [alertView show];
-            [alertView release];
-        }
-        
-    } else if ([method isEqualToString:@"pickImage"]) {
-        self.pickImageCallback=callback;
-        
-        // 跳转到相机或相册页面
-        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-        
-        imagePickerController.delegate = self;
-        
-        imagePickerController.allowsEditing = YES;
-        
-        imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        
-        [self presentViewController:imagePickerController animated:YES completion:^{}];
-        
-        [imagePickerController release];
-        
-        
-    }  else if ([method isEqualToString:@"post"]) {
-        
-        //[self hybridCallback:callback params:@"\"success-1\""];
-        NSDictionary *params=[info objectForKey:@"params"];
-        NSString *url=[params objectForKey:@"url"];
-        NSDictionary *data=[params objectForKey:@"data"];
-        NSDictionary *files=[params objectForKey:@"files"];
-        
-        NSLog(@"start upload %@",url);
-        
-        [self post:url data:data files:files completion:^(NSString *result){
-            [self hybridCallback:callback params:result];
-        }];
-        
-    } else if ([method isEqualToString:@"login"]) {
-        
-        
-    } else if ([method isEqualToString:@"getRect"]) {
-        CGRect rect = [webView frame];
-        [self hybridCallback:callback params:[@"" stringByAppendingFormat:@"%f,%f",rect.size.width,rect.size.height]];
-        
-    } else if ([method isEqualToString:@"onload"]||[@"queryThumbnailList" isEqualToString:method]) {
-    } else {
-        [webView stringByEvaluatingJavaScriptFromString:[@"alert(\"" stringByAppendingFormat:@"%@\")", method]];
-    }
-}
-
--(void)hybridCallback:(NSString *)callback params:(NSString *)params
-{
-    //NSDictionary *registerDic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:3],@"_id",@"test",@"login_name",@"123456",@"password",nil];
-    
-    NSLog(@"window.hybridFunctions.%@(%@);",callback,params);
-    
-    [hybridView stringByEvaluatingJavaScriptFromString:[@"window.hybridFunctions." stringByAppendingFormat:@"%@(%@);",callback,params]];
-}
-
--(NSString*)toJsString:(NSString *)s
-{
-    return [NSString stringWithFormat: @"\"%@\"", [[[s stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""] stringByReplacingOccurrencesOfString:@"\r" withString:@"\\r"] stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"]];
-}
-
--(NSString*)stringify:(NSObject *)object
-{
-    if ([NSJSONSerialization isValidJSONObject:object]) {
-        NSError *error;
-        NSData *registerData = [NSJSONSerialization dataWithJSONObject:object options:NSJSONWritingPrettyPrinted error:&error];
-        return [[NSString alloc] initWithData:registerData encoding:NSUTF8StringEncoding];
-    }
-    return nil;
-}
-
--(NSString*)decodeUrl:(NSString *)temp{
-    return [temp stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-}
 
 - (void) webViewDidFinishLoad: (UIWebView *) webView
 {
@@ -223,10 +88,10 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-	[super viewWillDisappear:animated];
+    [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-
+    
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
@@ -251,7 +116,139 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-	[super viewDidDisappear:animated];
+    [super viewDidDisappear:animated];
+}
+
+
+//加载本地html
+-(void)loadDocument:(NSString *)docName
+{
+    NSString *mainBundleDirectory=[[NSBundle mainBundle] bundlePath];
+    NSString *path=[mainBundleDirectory stringByAppendingPathComponent:docName];
+    NSURL *url=[NSURL fileURLWithPath:path];
+    NSURLRequest *request=[NSURLRequest requestWithURL:url];
+    hybridView.scalesPageToFit=YES;
+
+    [hybridView loadRequest:request];
+}
+
+- (void)callNativeApi:(HybridView*)webView command:(NSDictionary *)command {
+    //NSLog(@"json %@", json);
+    //json=[self decodeUrl:json];
+    //json=[json stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    //NSError *error = nil;
+    //IOS5自带解析类NSJSONSerialization从response中解析出数据放到字典中
+    //NSDictionary *info = [NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableLeaves error:&error];
+    
+    NSString *method = [command objectForKey:@"method"];
+    NSString *callback = [command objectForKey:@"callback"];
+    
+    //NSLog(@"method %@", method);
+    if ([method isEqualToString:@"share"]) {
+        
+        
+        
+    } else if ([method isEqualToString:@"tip"]) {
+        NSString *params=[command objectForKey:@"params"];
+        [self tip:params];
+        
+    } else if ([method isEqualToString:@"takePhoto"]) {
+        self.pickImageCallback=callback;
+        
+        //判断是否支持相机
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+        {
+            // 跳转到相机或相册页面
+            UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+            
+            imagePickerController.delegate = self;
+            
+            imagePickerController.allowsEditing = YES;
+            
+            imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+            
+            [self presentViewController:imagePickerController animated:YES completion:^{}];
+            
+            [imagePickerController release];
+        }
+        else
+        {
+            UIAlertView *alertView =[[UIAlertView alloc] initWithTitle:nil message:@"相机不能用" delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles:nil];
+            [alertView show];
+            [alertView release];
+        }
+        
+    } else if ([method isEqualToString:@"pickImage"]) {
+        self.pickImageCallback=callback;
+        
+        // 跳转到相机或相册页面
+        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+        
+        imagePickerController.delegate = self;
+        
+        imagePickerController.allowsEditing = YES;
+        
+        imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        
+        [self presentViewController:imagePickerController animated:YES completion:^{}];
+        
+        [imagePickerController release];
+        
+        
+    }  else if ([method isEqualToString:@"post"]) {
+        
+        //[self hybridCallback:callback params:@"\"success-1\""];
+        NSDictionary *params=[command objectForKey:@"params"];
+        NSString *url=[params objectForKey:@"url"];
+        NSDictionary *data=[params objectForKey:@"data"];
+        NSDictionary *files=[params objectForKey:@"files"];
+        
+        NSLog(@"start upload %@",url);
+        
+        [self post:url data:data files:files completion:^(NSString *result){
+            [self hybridCallback:callback params:result];
+        }];
+        
+    } else if ([method isEqualToString:@"login"]) {
+        
+        
+    } else if ([method isEqualToString:@"getRect"]) {
+        CGRect rect = [webView frame];
+        [self hybridCallback:callback params:[@"" stringByAppendingFormat:@"%f,%f",rect.size.width,rect.size.height]];
+        
+    } else if ([method isEqualToString:@"onload"]||[@"queryThumbnailList" isEqualToString:method]) {
+        
+    } else {
+        //[webView stringByEvaluatingJavaScriptFromString:[@"alert(\"" stringByAppendingFormat:@"%@\")", method]];
+    }
+}
+
+-(void)hybridCallback:(NSString *)callback params:(NSString *)params
+{
+    //NSDictionary *registerDic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:3],@"_id",@"test",@"login_name",@"123456",@"password",nil];
+    
+    NSLog(@"window.hybridFunctions.%@(%@);",callback,params);
+    
+    [hybridView stringByEvaluatingJavaScriptFromString:[@"window.hybridFunctions." stringByAppendingFormat:@"%@(%@);",callback,params]];
+}
+
+-(NSString*)toJsString:(NSString *)s
+{
+    return [NSString stringWithFormat: @"\"%@\"", [[[s stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""] stringByReplacingOccurrencesOfString:@"\r" withString:@"\\r"] stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"]];
+}
+
+-(NSString*)stringify:(NSObject *)object
+{
+    if ([NSJSONSerialization isValidJSONObject:object]) {
+        NSError *error;
+        NSData *registerData = [NSJSONSerialization dataWithJSONObject:object options:NSJSONWritingPrettyPrinted error:&error];
+        return [[NSString alloc] initWithData:registerData encoding:NSUTF8StringEncoding];
+    }
+    return nil;
+}
+
+-(NSString*)decodeUrl:(NSString *)temp{
+    return [temp stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
 #pragma mark UIImagePickerControllerDelegate协议的方法

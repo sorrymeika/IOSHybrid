@@ -18,6 +18,6 @@
 @end
 
 @protocol HybridViewDelegate
-- (void)hybridCall:(HybridView*)view data:(NSString *)data;
+- (void)callNativeApi:(HybridView*)view command:(NSDictionary *)command;
 @end
 

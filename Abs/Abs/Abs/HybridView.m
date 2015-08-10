@@ -15,13 +15,23 @@
 @synthesize hybridDelegate;
 
 -(void)webView:(UIWebView *)sender runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(id)frame{
-    /*
-    UIAlertView* dialogue = [[UIAlertView alloc]initWithTitle:nil message:message delegate:nil cancelButtonTitle:@"tt" otherButtonTitles:nil, nil];
-    [dialogue show];
-    [dialogue autorelease];
-     */
     
-    [self.hybridDelegate hybridCall:self data:message];
+    NSString *prefix=@"slapp://";
+    if ([message hasPrefix:prefix])
+    {
+        message=[message substringFromIndex:prefix.length];
+        
+        NSError *error = nil;
+        NSDictionary *command = [NSJSONSerialization JSONObjectWithData:[message dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableLeaves error:&error];
+        
+        [self.hybridDelegate callNativeApi:self command:command];
+    }
+    else
+    {
+        UIAlertView* dialogue = [[UIAlertView alloc]initWithTitle:nil message:message delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+        [dialogue show];
+        [dialogue autorelease];
+    }
 }
 
 @end

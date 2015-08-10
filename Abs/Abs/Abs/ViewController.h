@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
-#import "ZXingWidgetController.h"
 #import "HybridView.h"
 
 @interface ViewController : UIViewController<UIWebViewDelegate,AVAudioPlayerDelegate,HybridViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIScrollViewDelegate>
