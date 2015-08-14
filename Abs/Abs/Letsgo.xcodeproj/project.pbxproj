@@ -9,12 +9,6 @@
 /* Begin PBXBuildFile section */
 		2F0806161802E52F00D40F7C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0806151802E52F00D40F7C /* UIKit.framework */; };
 		2F0806181802E52F00D40F7C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0806171802E52F00D40F7C /* Foundation.framework */; };
-		2F0806201802E52F00D40F7C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2F08061E1802E52F00D40F7C /* InfoPlist.strings */; };
-		2F0806221802E52F00D40F7C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0806211802E52F00D40F7C /* main.m */; };
-		2F0806261802E52F00D40F7C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0806251802E52F00D40F7C /* AppDelegate.m */; };
-		2F0806291802E52F00D40F7C /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F0806281802E52F00D40F7C /* ViewController.mm */; };
-		2F08062C1802E52F00D40F7C /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F08062A1802E52F00D40F7C /* ViewController.xib */; };
-		2F1E8E791A060AE900783F74 /* HybridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F1E8E781A060AE900783F74 /* HybridView.m */; };
 		2F3BC776180D13DF004C08E3 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 2F3BC773180D13DF004C08E3 /* index.html */; };
 		2F3BC7AB180E6948004C08E3 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F3BC7AA180E6948004C08E3 /* libiconv.dylib */; };
 		2F3BC7AD180E6D54004C08E3 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F3BC7AC180E6D54004C08E3 /* CoreMedia.framework */; };
@@ -26,28 +20,22 @@
 		2F9392F9196D06300071245A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9392F7196D05440071245A /* CoreGraphics.framework */; };
 		2F968F38196D83C300E32381 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F968F37196D83C300E32381 /* QuartzCore.framework */; };
 		2F969071196D90EE00E32381 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F969070196D90EE00E32381 /* Security.framework */; };
-		2F969075196DA00000E32381 /* NavBar_ios5.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F969073196DA00000E32381 /* NavBar_ios5.png */; };
-		2F969076196DA00000E32381 /* NavBar_ios5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F969074196DA00000E32381 /* NavBar_ios5@2x.png */; };
 		2F9FAAFA1970D95700DFB77C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F9FAAF71970D95700DFB77C /* Images.xcassets */; };
 		60D1B6B51B65C20900E3C8EB /* controller.js in Resources */ = {isa = PBXBuildFile; fileRef = 60D1B6B31B65C20900E3C8EB /* controller.js */; };
 		60D1B6B61B65C20900E3C8EB /* slan.m.js in Resources */ = {isa = PBXBuildFile; fileRef = 60D1B6B41B65C20900E3C8EB /* slan.m.js */; };
+		60F1C4F41B7E6DBE0043FEA1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F1C4EF1B7E6DBE0043FEA1 /* AppDelegate.m */; };
+		60F1C4F51B7E6DBE0043FEA1 /* HybridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F1C4F11B7E6DBE0043FEA1 /* HybridView.m */; };
+		60F1C4F61B7E6DBE0043FEA1 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 60F1C4F31B7E6DBE0043FEA1 /* ViewController.mm */; };
+		60F1C4FF1B7E6DF60043FEA1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 60F1C4F81B7E6DF60043FEA1 /* InfoPlist.strings */; };
+		60F1C5001B7E6DF60043FEA1 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60F1C4FA1B7E6DF60043FEA1 /* ViewController.xib */; };
+		60F1C5011B7E6DF60043FEA1 /* Letsgo-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 60F1C4FC1B7E6DF60043FEA1 /* Letsgo-Info.plist */; };
+		60F1C5021B7E6DF60043FEA1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F1C4FE1B7E6DF60043FEA1 /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2F0806111802E52F00D40F7C /* Letsgo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Letsgo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F0806151802E52F00D40F7C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2F0806171802E52F00D40F7C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		2F08061D1802E52F00D40F7C /* Letsgo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Letsgo-Info.plist"; sourceTree = "<group>"; };
-		2F08061F1802E52F00D40F7C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		2F0806211802E52F00D40F7C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		2F0806231802E52F00D40F7C /* Letsgo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Letsgo-Prefix.pch"; sourceTree = "<group>"; };
-		2F0806241802E52F00D40F7C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		2F0806251802E52F00D40F7C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		2F0806271802E52F00D40F7C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		2F0806281802E52F00D40F7C /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
-		2F08062B1802E52F00D40F7C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
-		2F1E8E771A060AE900783F74 /* HybridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HybridView.h; sourceTree = "<group>"; };
-		2F1E8E781A060AE900783F74 /* HybridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HybridView.m; sourceTree = "<group>"; };
 		2F3BC773180D13DF004C08E3 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = index.html; path = files/index.html; sourceTree = "<group>"; };
 		2F3BC7AA180E6948004C08E3 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		2F3BC7AC180E6D54004C08E3 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -59,11 +47,20 @@
 		2F9392F7196D05440071245A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2F968F37196D83C300E32381 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2F969070196D90EE00E32381 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		2F969073196DA00000E32381 /* NavBar_ios5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBar_ios5.png; sourceTree = "<group>"; };
-		2F969074196DA00000E32381 /* NavBar_ios5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavBar_ios5@2x.png"; sourceTree = "<group>"; };
 		2F9FAAF71970D95700DFB77C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = images/Images.xcassets; sourceTree = "<group>"; };
 		60D1B6B31B65C20900E3C8EB /* controller.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = controller.js; path = files/controller.js; sourceTree = "<group>"; };
 		60D1B6B41B65C20900E3C8EB /* slan.m.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = slan.m.js; path = files/slan.m.js; sourceTree = "<group>"; };
+		60F1C4EE1B7E6DBD0043FEA1 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Views/AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		60F1C4EF1B7E6DBE0043FEA1 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Views/AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		60F1C4F01B7E6DBE0043FEA1 /* HybridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HybridView.h; path = Views/HybridView.h; sourceTree = SOURCE_ROOT; };
+		60F1C4F11B7E6DBE0043FEA1 /* HybridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HybridView.m; path = Views/HybridView.m; sourceTree = SOURCE_ROOT; };
+		60F1C4F21B7E6DBE0043FEA1 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = Views/ViewController.h; sourceTree = SOURCE_ROOT; };
+		60F1C4F31B7E6DBE0043FEA1 /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ViewController.mm; path = Views/ViewController.mm; sourceTree = SOURCE_ROOT; };
+		60F1C4F91B7E6DF60043FEA1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		60F1C4FB1B7E6DF60043FEA1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ViewController.xib; sourceTree = "<group>"; };
+		60F1C4FC1B7E6DF60043FEA1 /* Letsgo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Letsgo-Info.plist"; path = "Views/Letsgo-Info.plist"; sourceTree = SOURCE_ROOT; };
+		60F1C4FD1B7E6DF60043FEA1 /* Letsgo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Letsgo-Prefix.pch"; path = "Views/Letsgo-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		60F1C4FE1B7E6DF60043FEA1 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Views/main.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +93,7 @@
 				2F42A8961A051EFC00332167 /* images */,
 				2F9FAAF71970D95700DFB77C /* Images.xcassets */,
 				2F3BC773180D13DF004C08E3 /* index.html */,
-				2F08061B1802E52F00D40F7C /* Abs */,
+				2F08061B1802E52F00D40F7C /* Views */,
 				2F0806141802E52F00D40F7C /* Frameworks */,
 				2F0806121802E52F00D40F7C /* Products */,
 			);
@@ -128,40 +125,31 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		2F08061B1802E52F00D40F7C /* Abs */ = {
+		2F08061B1802E52F00D40F7C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2F1E8E771A060AE900783F74 /* HybridView.h */,
-				2F1E8E781A060AE900783F74 /* HybridView.m */,
-				2F969072196DA00000E32381 /* image */,
-				2F0806241802E52F00D40F7C /* AppDelegate.h */,
-				2F0806251802E52F00D40F7C /* AppDelegate.m */,
-				2F0806271802E52F00D40F7C /* ViewController.h */,
-				2F0806281802E52F00D40F7C /* ViewController.mm */,
-				2F08062A1802E52F00D40F7C /* ViewController.xib */,
+				60F1C4EE1B7E6DBD0043FEA1 /* AppDelegate.h */,
+				60F1C4EF1B7E6DBE0043FEA1 /* AppDelegate.m */,
+				60F1C4F01B7E6DBE0043FEA1 /* HybridView.h */,
+				60F1C4F11B7E6DBE0043FEA1 /* HybridView.m */,
+				60F1C4F21B7E6DBE0043FEA1 /* ViewController.h */,
+				60F1C4F31B7E6DBE0043FEA1 /* ViewController.mm */,
+				60F1C4FA1B7E6DF60043FEA1 /* ViewController.xib */,
 				2F08061C1802E52F00D40F7C /* Supporting Files */,
 			);
+			name = Views;
 			path = Abs;
 			sourceTree = "<group>";
 		};
 		2F08061C1802E52F00D40F7C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				2F08061D1802E52F00D40F7C /* Letsgo-Info.plist */,
-				2F08061E1802E52F00D40F7C /* InfoPlist.strings */,
-				2F0806211802E52F00D40F7C /* main.m */,
-				2F0806231802E52F00D40F7C /* Letsgo-Prefix.pch */,
+				60F1C4F81B7E6DF60043FEA1 /* InfoPlist.strings */,
+				60F1C4FC1B7E6DF60043FEA1 /* Letsgo-Info.plist */,
+				60F1C4FD1B7E6DF60043FEA1 /* Letsgo-Prefix.pch */,
+				60F1C4FE1B7E6DF60043FEA1 /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		2F969072196DA00000E32381 /* image */ = {
-			isa = PBXGroup;
-			children = (
-				2F969073196DA00000E32381 /* NavBar_ios5.png */,
-				2F969074196DA00000E32381 /* NavBar_ios5@2x.png */,
-			);
-			path = image;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,14 +210,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F42A8971A051EFC00332167 /* images in Resources */,
+				60F1C4FF1B7E6DF60043FEA1 /* InfoPlist.strings in Resources */,
+				60F1C5001B7E6DF60043FEA1 /* ViewController.xib in Resources */,
 				60D1B6B61B65C20900E3C8EB /* slan.m.js in Resources */,
 				2F9FAAFA1970D95700DFB77C /* Images.xcassets in Resources */,
-				2F0806201802E52F00D40F7C /* InfoPlist.strings in Resources */,
-				2F08062C1802E52F00D40F7C /* ViewController.xib in Resources */,
 				60D1B6B51B65C20900E3C8EB /* controller.js in Resources */,
 				2F3BC776180D13DF004C08E3 /* index.html in Resources */,
-				2F969075196DA00000E32381 /* NavBar_ios5.png in Resources */,
-				2F969076196DA00000E32381 /* NavBar_ios5@2x.png in Resources */,
+				60F1C5011B7E6DF60043FEA1 /* Letsgo-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,30 +244,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F0806221802E52F00D40F7C /* main.m in Sources */,
-				2F0806261802E52F00D40F7C /* AppDelegate.m in Sources */,
-				2F0806291802E52F00D40F7C /* ViewController.mm in Sources */,
-				2F1E8E791A060AE900783F74 /* HybridView.m in Sources */,
+				60F1C5021B7E6DF60043FEA1 /* main.m in Sources */,
+				60F1C4F51B7E6DBE0043FEA1 /* HybridView.m in Sources */,
+				60F1C4F61B7E6DBE0043FEA1 /* ViewController.mm in Sources */,
+				60F1C4F41B7E6DBE0043FEA1 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		2F08061E1802E52F00D40F7C /* InfoPlist.strings */ = {
+		60F1C4F81B7E6DF60043FEA1 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2F08061F1802E52F00D40F7C /* en */,
+				60F1C4F91B7E6DF60043FEA1 /* en */,
 			);
 			name = InfoPlist.strings;
+			path = ../Views/en.lproj;
 			sourceTree = "<group>";
 		};
-		2F08062A1802E52F00D40F7C /* ViewController.xib */ = {
+		60F1C4FA1B7E6DF60043FEA1 /* ViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2F08062B1802E52F00D40F7C /* en */,
+				60F1C4FB1B7E6DF60043FEA1 /* en */,
 			);
 			name = ViewController.xib;
+			path = ../Views/en.lproj;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -369,8 +358,8 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Abs/Letsgo-Prefix.pch";
-				INFOPLIST_FILE = "Abs/Letsgo-Info.plist";
+				GCC_PREFIX_HEADER = "Views/Letsgo-Prefix.pch";
+				INFOPLIST_FILE = "Views/Letsgo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -403,8 +392,8 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Abs/Letsgo-Prefix.pch";
-				INFOPLIST_FILE = "Abs/Letsgo-Info.plist";
+				GCC_PREFIX_HEADER = "Views/Letsgo-Prefix.pch";
+				INFOPLIST_FILE = "Views/Letsgo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -470,8 +459,8 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Abs/Letsgo-Prefix.pch";
-				INFOPLIST_FILE = "Abs/Letsgo-Info.plist";
+				GCC_PREFIX_HEADER = "Views/Letsgo-Prefix.pch";
+				INFOPLIST_FILE = "Views/Letsgo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
