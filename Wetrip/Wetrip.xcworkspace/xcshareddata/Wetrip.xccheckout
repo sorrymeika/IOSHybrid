@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>B7CC0C89-7F62-4B72-A7B1-79232364CBAB</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Wetrip</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>0899A3B7E16C265EAFCB5051BF05763C25468C5D</key>
+		<string>https://github.com/sorrymeika/IOSHybrid.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Wetrip/Wetrip.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>0899A3B7E16C265EAFCB5051BF05763C25468C5D</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/sorrymeika/IOSHybrid.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>0899A3B7E16C265EAFCB5051BF05763C25468C5D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>0899A3B7E16C265EAFCB5051BF05763C25468C5D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>IOSHybrid</string>
+		</dict>
+	</array>
+</dict>
+</plist>

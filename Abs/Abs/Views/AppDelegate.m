@@ -16,7 +16,7 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    [NSThread sleepForTimeInterval:1.5];
+    //[NSThread sleepForTimeInterval:1.5];
     
     UIWebView* webView = [[UIWebView alloc] initWithFrame:CGRectZero];
     NSString* secretAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];

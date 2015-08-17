@@ -152,6 +152,10 @@
         NSString *params=[command objectForKey:@"params"];
         [self tip:params];
         
+    } else if  ([method isEqualToString:@"open"]) {
+        NSString *params=[command objectForKey:@"params"];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:params]];
+        
     } else if ([method isEqualToString:@"takePhoto"]) {
         self.pickImageCallback=callback;
         
