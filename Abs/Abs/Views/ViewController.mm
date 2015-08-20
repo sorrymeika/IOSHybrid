@@ -56,8 +56,8 @@
     [(UIScrollView *)[[hybridView subviews] objectAtIndex:0] setBounces:NO];
     [(UIScrollView *)[[hybridView subviews] objectAtIndex:0] setShowsVerticalScrollIndicator:NO];
     
-    //[ViewUtil loadDocument:hybridView url:@"index.html"];
-    [ViewUtil loadDocument:hybridView url:@"http://192.168.0.104:5559/"];
+    [ViewUtil loadDocument:hybridView url:@"index.html"];
+    //[ViewUtil loadDocument:hybridView url:@"http://192.168.0.104:5559/"];
 }
 
 - (UIView*)viewForZoomingInScrollView:(UIScrollView*)scrollView{ // 实现代理方法， step 3
