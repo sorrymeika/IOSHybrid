@@ -23,6 +23,7 @@
 + (void)loadDocument:(UIWebView *)webView url:(NSString *)url{
     NSURLRequest *request;
     if ([url hasPrefix:@"http://"]){
+        NSLog(@"%@",url);
         
         request=[NSURLRequest requestWithURL:[NSURL URLWithString:url]];
         
