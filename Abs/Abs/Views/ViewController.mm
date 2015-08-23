@@ -158,6 +158,12 @@
         NSString *params=[command objectForKey:@"params"];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:params]];
         
+    } else if ([method isEqualToString:@"getDeviceToken"]){
+        NSString *key=@"DeviceToken";
+        NSData *token= [[NSUserDefaults standardUserDefaults]objectForKey:key];
+        
+        [self hybridCallback:callback params:[@"" stringByAppendingFormat:@"'%@'",token]];
+        
     } else if ([method isEqualToString:@"takePhoto"]) {
         self.pickImageCallback=callback;
         
