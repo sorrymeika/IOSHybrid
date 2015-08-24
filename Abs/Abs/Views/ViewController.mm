@@ -15,6 +15,8 @@
 
 @implementation ViewController
 
+//- (void) loadView
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

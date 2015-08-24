@@ -39,7 +39,7 @@
     [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent":newUagent}];
     
     // Override point for customization after application launch.
-    self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+    self.viewController = [[ViewController alloc] init];
     self.window.rootViewController = self.viewController;
     
     //[[UIApplication sharedApplication] setStatusBarHidden:NO];
