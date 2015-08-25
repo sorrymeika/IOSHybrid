@@ -13,7 +13,7 @@
 + (void) alert:(NSString*)message cancelButtonTitle:(NSString*) title{
     UIAlertView *alertView =[[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:title otherButtonTitles:nil];
     [alertView show];
-    [alertView release];
+    //[alertView release];
 }
 
 + (void) alert:(NSString*)message{

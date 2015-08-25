@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "HybridView.h"
 #import "ViewUtil.h"
+#import "CPModalWebViewController.h"
 
 @interface ViewController ()
 @end
@@ -160,11 +161,23 @@
         NSString *params=[command objectForKey:@"params"];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:params]];
         
+    } else if  ([method isEqualToString:@"openInApp"]) {
+        NSString *params=[command objectForKey:@"params"];
+        
+        CPModalWebViewController *webC = [[CPModalWebViewController alloc] initWithAddress:params];
+        
+        [self presentViewController:webC animated:YES completion:^{}];
+        
     } else if ([method isEqualToString:@"getDeviceToken"]){
         NSString *key=@"DeviceToken";
         NSData *token= [[NSUserDefaults standardUserDefaults]objectForKey:key];
         
-        [self hybridCallback:callback params:[@"" stringByAppendingFormat:@"'%@'",token]];
+        NSString *params=@"";
+        if (token) {
+            params=[@"" stringByAppendingFormat:@"'%@'",token];
+        }
+        
+        [self hybridCallback:callback params:params];
         
     } else if ([method isEqualToString:@"takePhoto"]) {
         self.pickImageCallback=callback;
@@ -183,13 +196,13 @@
             
             [self presentViewController:imagePickerController animated:YES completion:^{}];
             
-            [imagePickerController release];
+            //[imagePickerController release];
         }
         else
         {
             UIAlertView *alertView =[[UIAlertView alloc] initWithTitle:nil message:@"相机不能用" delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles:nil];
             [alertView show];
-            [alertView release];
+            //[alertView release];
         }
         
     } else if ([method isEqualToString:@"pickImage"]) {
@@ -206,7 +219,7 @@
         
         [self presentViewController:imagePickerController animated:YES completion:^{}];
         
-        [imagePickerController release];
+        //[imagePickerController release];
         
         
     }  else if ([method isEqualToString:@"post"]) {
@@ -290,7 +303,7 @@
     //输出格式为：2010-10-27 10:22:13
     NSLog(@"%@",currentDateStr);
     //alloc后对不使用的对象别忘了release
-    [dateFormatter release];
+    //[dateFormatter release];
     
     NSString *imageName = [NSString stringWithFormat:@"%@.jpg",currentDateStr];
     

@@ -30,7 +30,7 @@
     {
         UIAlertView* dialogue = [[UIAlertView alloc]initWithTitle:nil message:message delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
         [dialogue show];
-        [dialogue autorelease];
+        //[dialogue autorelease];
     }
 }
 
