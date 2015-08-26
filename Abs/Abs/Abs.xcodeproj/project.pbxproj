@@ -21,6 +21,7 @@
 		2F968F38196D83C300E32381 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F968F37196D83C300E32381 /* QuartzCore.framework */; };
 		2F969071196D90EE00E32381 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F969070196D90EE00E32381 /* Security.framework */; };
 		2F9FAAFA1970D95700DFB77C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F9FAAF71970D95700DFB77C /* Images.xcassets */; };
+		60AA1F221B8E1FBD007A203C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60AA1F211B8E1FBD007A203C /* CoreLocation.framework */; };
 		60D1B6B51B65C20900E3C8EB /* controller.js in Resources */ = {isa = PBXBuildFile; fileRef = 60D1B6B31B65C20900E3C8EB /* controller.js */; };
 		60D1B6B61B65C20900E3C8EB /* slan.m.js in Resources */ = {isa = PBXBuildFile; fileRef = 60D1B6B41B65C20900E3C8EB /* slan.m.js */; };
 		60E4A0D11B8C54D000F57174 /* CPWebViewController.strings in Resources */ = {isa = PBXBuildFile; fileRef = 60E4A0B41B8C54D000F57174 /* CPWebViewController.strings */; };
@@ -66,6 +67,7 @@
 		2F968F37196D83C300E32381 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2F969070196D90EE00E32381 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		2F9FAAF71970D95700DFB77C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = images/Images.xcassets; sourceTree = "<group>"; };
+		60AA1F211B8E1FBD007A203C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		60D1B6B31B65C20900E3C8EB /* controller.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = controller.js; path = files/controller.js; sourceTree = "<group>"; };
 		60D1B6B41B65C20900E3C8EB /* slan.m.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = slan.m.js; path = files/slan.m.js; sourceTree = "<group>"; };
 		60E4A0B51B8C54D000F57174 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/CPWebViewController.strings; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60AA1F221B8E1FBD007A203C /* CoreLocation.framework in Frameworks */,
 				2F969071196D90EE00E32381 /* Security.framework in Frameworks */,
 				2F0806181802E52F00D40F7C /* Foundation.framework in Frameworks */,
 				2F3BC97B180E7953004C08E3 /* AudioToolbox.framework in Frameworks */,
@@ -163,6 +166,7 @@
 		2F0806141802E52F00D40F7C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				60AA1F211B8E1FBD007A203C /* CoreLocation.framework */,
 				2F969070196D90EE00E32381 /* Security.framework */,
 				2F968F37196D83C300E32381 /* QuartzCore.framework */,
 				2F9392F7196D05440071245A /* CoreGraphics.framework */,
