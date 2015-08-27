@@ -214,7 +214,7 @@
         
     } else if([method isEqualToString:@"getLocation"]){
         _locationGettingCallback=callback;
-        //[self startGettingLocation];
+        [self startGettingLocation];
         
         
     } else if ([method isEqualToString:@"getDeviceToken"]){
