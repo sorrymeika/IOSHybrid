@@ -23,6 +23,7 @@
 		2F9FAAFA1970D95700DFB77C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F9FAAF71970D95700DFB77C /* Images.xcassets */; };
 		60D1B6B51B65C20900E3C8EB /* controller.js in Resources */ = {isa = PBXBuildFile; fileRef = 60D1B6B31B65C20900E3C8EB /* controller.js */; };
 		60D1B6B61B65C20900E3C8EB /* slan.m.js in Resources */ = {isa = PBXBuildFile; fileRef = 60D1B6B41B65C20900E3C8EB /* slan.m.js */; };
+		60D50DC01B9426B2007873B9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60D50DBE1B9426B2007873B9 /* LaunchScreen.xib */; };
 		60F1C3B41B81A52F00995C1A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 60F1C3B21B81A52F00995C1A /* InfoPlist.strings */; };
 		60F1C3B71B81A54E00995C1A /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60F1C3B51B81A54E00995C1A /* ViewController.xib */; };
 		60F1C4F41B7E6DBE0043FEA1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F1C4EF1B7E6DBE0043FEA1 /* AppDelegate.m */; };
@@ -50,6 +51,7 @@
 		2F9FAAF71970D95700DFB77C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = images/Images.xcassets; sourceTree = "<group>"; };
 		60D1B6B31B65C20900E3C8EB /* controller.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = controller.js; path = files/controller.js; sourceTree = "<group>"; };
 		60D1B6B41B65C20900E3C8EB /* slan.m.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = slan.m.js; path = files/slan.m.js; sourceTree = "<group>"; };
+		60D50DBF1B9426B2007873B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = Views/en.lproj/LaunchScreen.xib; sourceTree = SOURCE_ROOT; };
 		60F1C3B31B81A52F00995C1A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Views/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
 		60F1C3B61B81A54E00995C1A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = Views/en.lproj/ViewController.xib; sourceTree = SOURCE_ROOT; };
 		60F1C4EE1B7E6DBD0043FEA1 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Views/AppDelegate.h; sourceTree = SOURCE_ROOT; };
@@ -128,6 +130,7 @@
 		2F08061B1802E52F00D40F7C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				60D50DBE1B9426B2007873B9 /* LaunchScreen.xib */,
 				60F1C4EE1B7E6DBD0043FEA1 /* AppDelegate.h */,
 				60F1C4EF1B7E6DBE0043FEA1 /* AppDelegate.m */,
 				60F1C4F01B7E6DBE0043FEA1 /* HybridView.h */,
@@ -216,6 +219,7 @@
 				2F9FAAFA1970D95700DFB77C /* Images.xcassets in Resources */,
 				60D1B6B51B65C20900E3C8EB /* controller.js in Resources */,
 				2F3BC776180D13DF004C08E3 /* index.html in Resources */,
+				60D50DC01B9426B2007873B9 /* LaunchScreen.xib in Resources */,
 				60F1C5011B7E6DF60043FEA1 /* Letsgo-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,6 +258,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		60D50DBE1B9426B2007873B9 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				60D50DBF1B9426B2007873B9 /* en */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
 		60F1C3B21B81A52F00995C1A /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
