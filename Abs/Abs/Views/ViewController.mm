@@ -64,6 +64,7 @@
     [(UIScrollView *)[[hybridView subviews] objectAtIndex:0] setBounces:NO];
     [(UIScrollView *)[[hybridView subviews] objectAtIndex:0] setShowsVerticalScrollIndicator:NO];
     
+    //[ViewUtil loadDocument:hybridView url:@"http://192.168.10.129:5559/"];
     [ViewUtil loadDocument:hybridView url:@"index.html"];
     //[ViewUtil loadDocument:hybridView url:@"http://192.168.0.104:5559/"];
 }
@@ -101,6 +102,7 @@
     CLLocation *location=[locations firstObject];//取出第一个位置
     CLLocationCoordinate2D coordinate=location.coordinate;//位置坐标
     NSLog(@"经度：%f,纬度：%f,海拔：%f,航向：%f,行走速度：%f",coordinate.longitude,coordinate.latitude,location.altitude,location.course,location.speed);
+    
     //如果不需要实时定位，使用完即使关闭定位服务
     [_locationManager stopUpdatingLocation];
     
