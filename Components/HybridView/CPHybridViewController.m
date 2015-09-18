@@ -6,20 +6,20 @@
 //  Copyright (c) 2013年 Miku. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "CPHybridViewController.h"
 #import "UIHybridView.h"
 #import "ViewUtil.h"
 #import "CPModalWebViewController.h"
 #import <CoreLocation/CoreLocation.h>
 
-@interface ViewController ()<CLLocationManagerDelegate>{
+@interface CPHybridViewController ()<CLLocationManagerDelegate>{
     
     CLLocationManager *_locationManager;
     NSString *_locationGettingCallback;
 }
 @end
 
-@implementation ViewController
+@implementation CPHybridViewController
 
 //- (void) loadView
 

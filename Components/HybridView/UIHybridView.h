@@ -6,18 +6,18 @@
 //  Copyright (c) 2014年 Miku. All rights reserved.
 //
 
-@protocol HybridViewDelegate;
+@protocol UIHybridViewDelegate;
 
-@interface HybridView:UIWebView {
+@interface UIHybridView:UIWebView {
 }
 
 
 -(void)webView:(UIWebView *)sender runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(id)frame;
 
-@property (nonatomic, assign) id<HybridViewDelegate> hybridDelegate;
+@property (nonatomic, assign) id<UIHybridViewDelegate> hybridDelegate;
 @end
 
-@protocol HybridViewDelegate
-- (void)callNativeApi:(HybridView*)view command:(NSDictionary *)command;
+@protocol UIHybridViewDelegate
+- (void)callNativeApi:(UIHybridView*)view command:(NSDictionary *)command;
 @end
 

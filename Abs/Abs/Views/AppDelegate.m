@@ -43,6 +43,7 @@
     self.window.rootViewController = self.viewController;
     
     //[[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
     [self.window makeKeyAndVisible];
     return YES;

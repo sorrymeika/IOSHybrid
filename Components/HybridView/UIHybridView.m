@@ -5,12 +5,12 @@
 //  Created by Miku on 14-11-2.
 //  Copyright (c) 2014年 Miku. All rights reserved.
 //
-#import "HybridView.h"
+#import "UIHybridView.h"
 
-@interface HybridView ()
+@interface UIHybridView ()
 @end
 
-@implementation HybridView
+@implementation UIHybridView
 
 @synthesize hybridDelegate;
 

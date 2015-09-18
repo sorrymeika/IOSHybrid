@@ -24,6 +24,8 @@
 		60AA1F221B8E1FBD007A203C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60AA1F211B8E1FBD007A203C /* CoreLocation.framework */; };
 		60D1B6B51B65C20900E3C8EB /* controller.js in Resources */ = {isa = PBXBuildFile; fileRef = 60D1B6B31B65C20900E3C8EB /* controller.js */; };
 		60D1B6B61B65C20900E3C8EB /* slan.m.js in Resources */ = {isa = PBXBuildFile; fileRef = 60D1B6B41B65C20900E3C8EB /* slan.m.js */; };
+		60D8AE111BAC5CDC0050C032 /* UIHybridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D8AE101BAC5CDC0050C032 /* UIHybridView.m */; };
+		60D8AE141BAC5E5B0050C032 /* CPHybridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D8AE131BAC5E5B0050C032 /* CPHybridViewController.m */; };
 		60E4A0D11B8C54D000F57174 /* CPWebViewController.strings in Resources */ = {isa = PBXBuildFile; fileRef = 60E4A0B41B8C54D000F57174 /* CPWebViewController.strings */; };
 		60E4A0D21B8C54D000F57174 /* MyURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E4A0B71B8C54D000F57174 /* MyURLCache.m */; };
 		60E4A0D31B8C54D000F57174 /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E4A0BA1B8C54D000F57174 /* NJKWebViewProgress.m */; };
@@ -44,7 +46,6 @@
 		60E4A0E91B8C55D100F57174 /* CPModalWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E4A0E81B8C55D100F57174 /* CPModalWebViewController.m */; };
 		60F1C3AF1B81A1DA00995C1A /* ViewUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F1C3AE1B81A1DA00995C1A /* ViewUtil.m */; };
 		60F1C4F41B7E6DBE0043FEA1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F1C4EF1B7E6DBE0043FEA1 /* AppDelegate.m */; };
-		60F1C4F51B7E6DBE0043FEA1 /* HybridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F1C4F11B7E6DBE0043FEA1 /* HybridView.m */; };
 		60F1C4F61B7E6DBE0043FEA1 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 60F1C4F31B7E6DBE0043FEA1 /* ViewController.mm */; };
 		60F1C5021B7E6DF60043FEA1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F1C4FE1B7E6DF60043FEA1 /* main.m */; };
 		60F289901B810DB20087284C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60F2898E1B810DB20087284C /* LaunchScreen.xib */; };
@@ -70,6 +71,10 @@
 		60AA1F211B8E1FBD007A203C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		60D1B6B31B65C20900E3C8EB /* controller.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = controller.js; path = files/controller.js; sourceTree = "<group>"; };
 		60D1B6B41B65C20900E3C8EB /* slan.m.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = slan.m.js; path = files/slan.m.js; sourceTree = "<group>"; };
+		60D8AE0F1BAC5CDC0050C032 /* UIHybridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIHybridView.h; sourceTree = "<group>"; };
+		60D8AE101BAC5CDC0050C032 /* UIHybridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIHybridView.m; sourceTree = "<group>"; };
+		60D8AE121BAC5E5B0050C032 /* CPHybridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHybridViewController.h; sourceTree = "<group>"; };
+		60D8AE131BAC5E5B0050C032 /* CPHybridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHybridViewController.m; sourceTree = "<group>"; };
 		60E4A0B51B8C54D000F57174 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/CPWebViewController.strings; sourceTree = "<group>"; };
 		60E4A0B61B8C54D000F57174 /* MyURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyURLCache.h; sourceTree = "<group>"; };
 		60E4A0B71B8C54D000F57174 /* MyURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyURLCache.m; sourceTree = "<group>"; };
@@ -104,8 +109,6 @@
 		60F1C3AE1B81A1DA00995C1A /* ViewUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewUtil.m; sourceTree = "<group>"; };
 		60F1C4EE1B7E6DBD0043FEA1 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Views/AppDelegate.h; sourceTree = SOURCE_ROOT; };
 		60F1C4EF1B7E6DBE0043FEA1 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Views/AppDelegate.m; sourceTree = SOURCE_ROOT; };
-		60F1C4F01B7E6DBE0043FEA1 /* HybridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HybridView.h; path = Views/HybridView.h; sourceTree = SOURCE_ROOT; };
-		60F1C4F11B7E6DBE0043FEA1 /* HybridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HybridView.m; path = Views/HybridView.m; sourceTree = SOURCE_ROOT; };
 		60F1C4F21B7E6DBE0043FEA1 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = Views/ViewController.h; sourceTree = SOURCE_ROOT; };
 		60F1C4F31B7E6DBE0043FEA1 /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ViewController.mm; path = Views/ViewController.mm; sourceTree = SOURCE_ROOT; };
 		60F1C4FC1B7E6DF60043FEA1 /* Abs-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Abs-Info.plist"; path = "Views/Abs-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -187,8 +190,6 @@
 			children = (
 				60F1C4EE1B7E6DBD0043FEA1 /* AppDelegate.h */,
 				60F1C4EF1B7E6DBE0043FEA1 /* AppDelegate.m */,
-				60F1C4F01B7E6DBE0043FEA1 /* HybridView.h */,
-				60F1C4F11B7E6DBE0043FEA1 /* HybridView.m */,
 				60F1C4F21B7E6DBE0043FEA1 /* ViewController.h */,
 				60F1C4F31B7E6DBE0043FEA1 /* ViewController.mm */,
 				60F2898E1B810DB20087284C /* LaunchScreen.xib */,
@@ -209,9 +210,21 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		60D8AE0E1BAC5CDC0050C032 /* HybridView */ = {
+			isa = PBXGroup;
+			children = (
+				60D8AE121BAC5E5B0050C032 /* CPHybridViewController.h */,
+				60D8AE131BAC5E5B0050C032 /* CPHybridViewController.m */,
+				60D8AE0F1BAC5CDC0050C032 /* UIHybridView.h */,
+				60D8AE101BAC5CDC0050C032 /* UIHybridView.m */,
+			);
+			path = HybridView;
+			sourceTree = "<group>";
+		};
 		60E4A0B21B8C4E7500F57174 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				60D8AE0E1BAC5CDC0050C032 /* HybridView */,
 				60E4A0B31B8C54D000F57174 /* WebView */,
 			);
 			name = Components;
@@ -406,12 +419,13 @@
 			files = (
 				60E4A0DD1B8C54D000F57174 /* SVWebViewControllerActivitySafari.m in Sources */,
 				60F1C5021B7E6DF60043FEA1 /* main.m in Sources */,
-				60F1C4F51B7E6DBE0043FEA1 /* HybridView.m in Sources */,
 				60E4A0E21B8C552700F57174 /* STTools.m in Sources */,
+				60D8AE111BAC5CDC0050C032 /* UIHybridView.m in Sources */,
 				60E4A0D21B8C54D000F57174 /* MyURLCache.m in Sources */,
 				60F1C3AF1B81A1DA00995C1A /* ViewUtil.m in Sources */,
 				60F1C4F61B7E6DBE0043FEA1 /* ViewController.mm in Sources */,
 				60E4A0D91B8C54D000F57174 /* SVWebViewControllerActivityChrome.m in Sources */,
+				60D8AE141BAC5E5B0050C032 /* CPHybridViewController.m in Sources */,
 				60F1C4F41B7E6DBE0043FEA1 /* AppDelegate.m in Sources */,
 				60E4A0D31B8C54D000F57174 /* NJKWebViewProgress.m in Sources */,
 				60E4A0D61B8C54D000F57174 /* CPWebViewController.m in Sources */,
