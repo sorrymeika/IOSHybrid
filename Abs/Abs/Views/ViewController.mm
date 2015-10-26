@@ -72,7 +72,7 @@
     [(UIScrollView *)[[hybridView subviews] objectAtIndex:0] setBounces:NO];
     [(UIScrollView *)[[hybridView subviews] objectAtIndex:0] setShowsVerticalScrollIndicator:NO];
     
-    //[ViewUtil loadDocument:hybridView url:@"http://192.168.10.129:5559/"];
+    //[ViewUtil loadDocument:hybridView url:@"http://www.baicu.com/"];
     [ViewUtil loadDocument:hybridView url:@"index.html"];
     //[ViewUtil loadDocument:hybridView url:@"http://192.168.0.104:5559/"];
 }
@@ -178,18 +178,6 @@
     [super viewDidDisappear:animated];
 }
 
-
-//加载本地html
--(void)loadDocument:(NSString *)docName
-{
-    NSString *mainBundleDirectory=[[NSBundle mainBundle] bundlePath];
-    NSString *path=[mainBundleDirectory stringByAppendingPathComponent:docName];
-    NSURL *url=[NSURL fileURLWithPath:path];
-    NSURLRequest *request=[NSURLRequest requestWithURL:url];
-    hybridView.scalesPageToFit=YES;
-
-    [hybridView loadRequest:request];
-}
 
 - (void)callNativeApi:(UIHybridView*)webView command:(NSDictionary *)command {
     //NSLog(@"json %@", json);

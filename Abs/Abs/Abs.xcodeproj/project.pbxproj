@@ -10,7 +10,6 @@
 		2F0806161802E52F00D40F7C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0806151802E52F00D40F7C /* UIKit.framework */; };
 		2F0806181802E52F00D40F7C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0806171802E52F00D40F7C /* Foundation.framework */; };
 		2F3BC776180D13DF004C08E3 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 2F3BC773180D13DF004C08E3 /* index.html */; };
-		2F3BC7AB180E6948004C08E3 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F3BC7AA180E6948004C08E3 /* libiconv.dylib */; };
 		2F3BC7AD180E6D54004C08E3 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F3BC7AC180E6D54004C08E3 /* CoreMedia.framework */; };
 		2F3BC7AF180E6D5F004C08E3 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F3BC7AE180E6D5F004C08E3 /* CoreVideo.framework */; };
 		2F3BC97B180E7953004C08E3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F3BC97A180E7953004C08E3 /* AudioToolbox.framework */; };
@@ -26,6 +25,7 @@
 		60D1B6B61B65C20900E3C8EB /* slan.m.js in Resources */ = {isa = PBXBuildFile; fileRef = 60D1B6B41B65C20900E3C8EB /* slan.m.js */; };
 		60D8AE111BAC5CDC0050C032 /* UIHybridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D8AE101BAC5CDC0050C032 /* UIHybridView.m */; };
 		60D8AE141BAC5E5B0050C032 /* CPHybridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D8AE131BAC5E5B0050C032 /* CPHybridViewController.m */; };
+		60DD8F941BB1374C00AFCB68 /* StringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DD8F931BB1374C00AFCB68 /* StringUtil.m */; };
 		60E4A0D11B8C54D000F57174 /* CPWebViewController.strings in Resources */ = {isa = PBXBuildFile; fileRef = 60E4A0B41B8C54D000F57174 /* CPWebViewController.strings */; };
 		60E4A0D21B8C54D000F57174 /* MyURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E4A0B71B8C54D000F57174 /* MyURLCache.m */; };
 		60E4A0D31B8C54D000F57174 /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E4A0BA1B8C54D000F57174 /* NJKWebViewProgress.m */; };
@@ -57,7 +57,6 @@
 		2F0806151802E52F00D40F7C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2F0806171802E52F00D40F7C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2F3BC773180D13DF004C08E3 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = index.html; path = files/index.html; sourceTree = "<group>"; };
-		2F3BC7AA180E6948004C08E3 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		2F3BC7AC180E6D54004C08E3 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		2F3BC7AE180E6D5F004C08E3 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		2F3BC97A180E7953004C08E3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -75,6 +74,8 @@
 		60D8AE101BAC5CDC0050C032 /* UIHybridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIHybridView.m; sourceTree = "<group>"; };
 		60D8AE121BAC5E5B0050C032 /* CPHybridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHybridViewController.h; sourceTree = "<group>"; };
 		60D8AE131BAC5E5B0050C032 /* CPHybridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHybridViewController.m; sourceTree = "<group>"; };
+		60DD8F921BB1374C00AFCB68 /* StringUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringUtil.h; sourceTree = "<group>"; };
+		60DD8F931BB1374C00AFCB68 /* StringUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringUtil.m; sourceTree = "<group>"; };
 		60E4A0B51B8C54D000F57174 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/CPWebViewController.strings; sourceTree = "<group>"; };
 		60E4A0B61B8C54D000F57174 /* MyURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyURLCache.h; sourceTree = "<group>"; };
 		60E4A0B71B8C54D000F57174 /* MyURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyURLCache.m; sourceTree = "<group>"; };
@@ -131,7 +132,6 @@
 				2F9391B5196D03700071245A /* CFNetwork.framework in Frameworks */,
 				2F3BC7AF180E6D5F004C08E3 /* CoreVideo.framework in Frameworks */,
 				2F3BC7AD180E6D54004C08E3 /* CoreMedia.framework in Frameworks */,
-				2F3BC7AB180E6948004C08E3 /* libiconv.dylib in Frameworks */,
 				2F82C9BE1805B126007FD643 /* AVFoundation.framework in Frameworks */,
 				2F0806161802E52F00D40F7C /* UIKit.framework in Frameworks */,
 				2F968F38196D83C300E32381 /* QuartzCore.framework in Frameworks */,
@@ -177,7 +177,6 @@
 				2F3BC97A180E7953004C08E3 /* AudioToolbox.framework */,
 				2F3BC7AE180E6D5F004C08E3 /* CoreVideo.framework */,
 				2F3BC7AC180E6D54004C08E3 /* CoreMedia.framework */,
-				2F3BC7AA180E6948004C08E3 /* libiconv.dylib */,
 				2F82C9BD1805B126007FD643 /* AVFoundation.framework */,
 				2F0806151802E52F00D40F7C /* UIKit.framework */,
 				2F0806171802E52F00D40F7C /* Foundation.framework */,
@@ -307,6 +306,8 @@
 		60F1C3AC1B81A1DA00995C1A /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				60DD8F921BB1374C00AFCB68 /* StringUtil.h */,
+				60DD8F931BB1374C00AFCB68 /* StringUtil.m */,
 				60E4A0E01B8C552700F57174 /* STTools.h */,
 				60E4A0E11B8C552700F57174 /* STTools.m */,
 				60F1C3AD1B81A1DA00995C1A /* ViewUtil.h */,
@@ -431,6 +432,7 @@
 				60E4A0D61B8C54D000F57174 /* CPWebViewController.m in Sources */,
 				60E4A0E61B8C553E00F57174 /* NSEtcHosts.m in Sources */,
 				60E4A0D41B8C54D000F57174 /* NJKWebViewProgressView.m in Sources */,
+				60DD8F941BB1374C00AFCB68 /* StringUtil.m in Sources */,
 				60E4A0E91B8C55D100F57174 /* CPModalWebViewController.m in Sources */,
 				60E4A0DF1B8C54D000F57174 /* SVWebViewControllerActivity.m in Sources */,
 			);
@@ -557,8 +559,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iOS Distribution: Xue Jiao Zhou";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -586,8 +589,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iOS Distribution: Xue Jiao Zhou";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -654,8 +658,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iOS Distribution: Xue Jiao Zhou";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",

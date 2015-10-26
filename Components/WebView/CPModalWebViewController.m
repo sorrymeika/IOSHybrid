@@ -38,7 +38,7 @@
 - (instancetype)initWithURLRequest:(NSURLRequest *)request {
     self.webViewController = [[CPWebViewController alloc] initWithURLRequest:request];
     if (self = [super initWithRootViewController:self.webViewController]) {
-        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"关闭" style:UIBarButtonItemStyleDone
                                                                                     target:self.webViewController
                                                                                     action:@selector(doneButtonTapped:)];
         

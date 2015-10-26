@@ -6,6 +6,7 @@
 //  Copyright (c) 2014年 Miku. All rights reserved.
 //
 #import "UIHybridView.h"
+#import "ViewUtil.h"
 
 @interface UIHybridView ()
 @end
@@ -32,6 +33,11 @@
         [dialogue show];
         //[dialogue autorelease];
     }
+}
+
+-(void)loadRequestWidthAddress:(NSString *)url
+{
+    [ViewUtil loadDocument:self url:url];
 }
 
 @end

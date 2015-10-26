@@ -9,6 +9,7 @@
 #import "CPHybridViewController.h"
 #import "UIHybridView.h"
 #import "ViewUtil.h"
+#import "StringUtil.h"
 #import "CPModalWebViewController.h"
 #import <CoreLocation/CoreLocation.h>
 
@@ -16,10 +17,18 @@
     
     CLLocationManager *_locationManager;
     NSString *_locationGettingCallback;
+    NSString *_mainUrlString;
 }
 @end
 
 @implementation CPHybridViewController
+
+
+- (instancetype)initWithAddress:(NSString*)urlString {
+    _mainUrlString=urlString;
+    return self;
+}
+
 
 //- (void) loadView
 
@@ -63,7 +72,6 @@
     hybridView.scalesPageToFit =YES;
     hybridView.delegate = self;
     hybridView.hybridDelegate=self;
-    
     hybridView.scrollView.delegate = self;
     
     NSLog(@"width %f",[[UIScreen mainScreen] bounds].size.width);
@@ -72,8 +80,9 @@
     [(UIScrollView *)[[hybridView subviews] objectAtIndex:0] setBounces:NO];
     [(UIScrollView *)[[hybridView subviews] objectAtIndex:0] setShowsVerticalScrollIndicator:NO];
     
+    [hybridView loadRequestWidthAddress:!_mainUrlString? @"index.html":_mainUrlString];
+    
     //[ViewUtil loadDocument:hybridView url:@"http://192.168.10.129:5559/"];
-    [ViewUtil loadDocument:hybridView url:@"index.html"];
     //[ViewUtil loadDocument:hybridView url:@"http://192.168.0.104:5559/"];
 }
 
@@ -103,8 +112,7 @@
     //定位管理器-->
 }
 
-#pragma mark - CoreLocation 代理
-#pragma mark 跟踪定位代理方法，每次位置发生变化即会执行（只要定位到相应位置）
+
 //可以通过模拟器设置一个虚拟位置，否则在模拟器中无法调用此方法
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
     CLLocation *location=[locations firstObject];//取出第一个位置
@@ -179,18 +187,6 @@
 }
 
 
-//加载本地html
--(void)loadDocument:(NSString *)docName
-{
-    NSString *mainBundleDirectory=[[NSBundle mainBundle] bundlePath];
-    NSString *path=[mainBundleDirectory stringByAppendingPathComponent:docName];
-    NSURL *url=[NSURL fileURLWithPath:path];
-    NSURLRequest *request=[NSURLRequest requestWithURL:url];
-    hybridView.scalesPageToFit=YES;
-
-    [hybridView loadRequest:request];
-}
-
 - (void)callNativeApi:(UIHybridView*)webView command:(NSDictionary *)command {
     //NSLog(@"json %@", json);
     //json=[self decodeUrl:json];
@@ -204,8 +200,6 @@
     
     //NSLog(@"method %@", method);
     if ([method isEqualToString:@"share"]) {
-        
-        
         
     } else if ([method isEqualToString:@"tip"]) {
         NSString *params=[command objectForKey:@"params"];
@@ -318,24 +312,6 @@
     [hybridView stringByEvaluatingJavaScriptFromString:[@"window.hybridFunctions." stringByAppendingFormat:@"%@(%@);",callback,params]];
 }
 
--(NSString*)toJsString:(NSString *)s
-{
-    return [NSString stringWithFormat: @"\"%@\"", [[[s stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""] stringByReplacingOccurrencesOfString:@"\r" withString:@"\\r"] stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"]];
-}
-
--(NSString*)stringify:(NSObject *)object
-{
-    if ([NSJSONSerialization isValidJSONObject:object]) {
-        NSError *error;
-        NSData *registerData = [NSJSONSerialization dataWithJSONObject:object options:NSJSONWritingPrettyPrinted error:&error];
-        return [[NSString alloc] initWithData:registerData encoding:NSUTF8StringEncoding];
-    }
-    return nil;
-}
-
--(NSString*)decodeUrl:(NSString *)temp{
-    return [temp stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-}
 
 #pragma mark UIImagePickerControllerDelegate协议的方法
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
@@ -379,7 +355,7 @@
     NSString *imageBase64Str =[NSString stringWithFormat:@"data:image/jpeg;base64,%@",[imageData base64Encoding]];
     NSDictionary *result=[NSDictionary dictionaryWithObjectsAndKeys:fullPath,@"path",imageBase64Str,@"src",nil];
     
-    [self hybridCallback:self.pickImageCallback params:[self stringify:result]];
+    [self hybridCallback:self.pickImageCallback params:[StringUtil stringify:result]];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -578,7 +554,7 @@
     
     //[active startAnimating];
     
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(c) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(y) userInfo:nil repeats:NO];
 }
 
 - (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event

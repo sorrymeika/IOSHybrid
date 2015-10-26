@@ -413,7 +413,7 @@ typedef NS_ENUM(NSInteger, ViewType) {
     }
 }
 
-- (void)doneButtonTapped:(id)sùender {
+- (void)doneButtonTapped:(id)sender {
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 

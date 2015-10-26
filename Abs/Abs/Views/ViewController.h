@@ -18,8 +18,6 @@
 }
 
 @property (strong, nonatomic) NSString *pickImageCallback;
--(void)loadDocument:(NSString *)docName;
-
 
 @end
 
