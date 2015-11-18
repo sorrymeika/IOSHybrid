@@ -30,4 +30,14 @@
     return [url stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
++(NSData*) stringToData:(NSString *)str{
+    NSData *data = [str dataUsingEncoding: NSUTF8StringEncoding];
+    return data;
+}
+
++(NSString*) dataToString:(NSData *)data{
+    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    return str;
+}
+
 @end

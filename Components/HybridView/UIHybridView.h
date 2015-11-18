@@ -16,6 +16,9 @@
 -(void)webView:(UIWebView *)sender runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(id)frame;
 
 @property (nonatomic, assign) id<UIHybridViewDelegate> hybridDelegate;
+@property (nonatomic, retain) UIViewController* viewController;
+
+-(void)callback:(NSString *)callback params:(NSDictionary*) params;
 @end
 
 @protocol UIHybridViewDelegate

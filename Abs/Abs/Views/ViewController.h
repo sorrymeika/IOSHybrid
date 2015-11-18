@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AVFoundation/AVFoundation.h>
+
 #import "UIHybridView.h"
 
-@interface ViewController : UIViewController<UIWebViewDelegate,AVAudioPlayerDelegate,UIHybridViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIScrollViewDelegate>
+@interface ViewController : UIViewController<UIWebViewDelegate,UIHybridViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIScrollViewDelegate>
 {
     
     UIHybridView *hybridView;

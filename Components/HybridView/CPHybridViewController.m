@@ -10,6 +10,7 @@
 #import "UIHybridView.h"
 #import "ViewUtil.h"
 #import "StringUtil.h"
+#import "HttpUtil.h"
 #import "CPModalWebViewController.h"
 #import <CoreLocation/CoreLocation.h>
 
@@ -30,7 +31,6 @@
 }
 
 
-//- (void) loadView
 
 - (void)didReceiveMemoryWarning
 {
@@ -53,7 +53,6 @@
 -(UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
-    
 }
 
 - (void)viewDidLoad
@@ -86,44 +85,7 @@
     //[ViewUtil loadDocument:hybridView url:@"http://192.168.0.104:5559/"];
 }
 
--(void) startGettingLocation{
-    //<--定位管理器
-    _locationManager=[[CLLocationManager alloc]init];
-    
-    if (![CLLocationManager locationServicesEnabled]) {
-        NSLog(@"定位服务当前可能尚未打开，请设置打开！");
-        return;
-    }
-    
-    //如果没有授权则请求用户授权
-    if ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined){
-        [_locationManager requestWhenInUseAuthorization];
-    }else if([CLLocationManager authorizationStatus]==kCLAuthorizationStatusAuthorizedWhenInUse){
-        //设置代理
-        _locationManager.delegate=self;
-        //设置定位精度
-        _locationManager.desiredAccuracy=kCLLocationAccuracyBest;
-        //定位频率,每隔多少米定位一次
-        CLLocationDistance distance=10.0;//十米定位一次
-        _locationManager.distanceFilter=distance;
-        //启动跟踪定位
-        [_locationManager startUpdatingLocation];
-    }
-    //定位管理器-->
-}
 
-
-//可以通过模拟器设置一个虚拟位置，否则在模拟器中无法调用此方法
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
-    CLLocation *location=[locations firstObject];//取出第一个位置
-    CLLocationCoordinate2D coordinate=location.coordinate;//位置坐标
-    NSLog(@"经度：%f,纬度：%f,海拔：%f,航向：%f,行走速度：%f",coordinate.longitude,coordinate.latitude,location.altitude,location.course,location.speed);
-    
-    //如果不需要实时定位，使用完即使关闭定位服务
-    [_locationManager stopUpdatingLocation];
-    
-    [self hybridCallback:_locationGettingCallback params:[NSString stringWithFormat:@"%f,%f,%f,%f,%f",coordinate.longitude,coordinate.latitude,location.altitude,location.course,location.speed]];
-}
 
 - (UIView*)viewForZoomingInScrollView:(UIScrollView*)scrollView{ // 实现代理方法， step 3
     return nil;
@@ -164,8 +126,8 @@
 - (void)keyboardWillShow:(NSNotification *)notification {
     NSDictionary *userInfo = [notification userInfo];
     NSValue* value = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-    CGRect keyboardRect = [value CGRectValue]; // 这里得到了键盘的frame
-    // 你的操作，如键盘出现，控制视图上移等
+    //这里得到了键盘的frame
+    CGRect keyboardRect = [value CGRectValue];
     
     NSLog(@"height:%f",keyboardRect.size.height);
     
@@ -177,7 +139,6 @@
 - (void)keyboardWillHide:(NSNotification *)notification {
     // 获取info同上面的方法
     // 你的操作，如键盘移除，控制视图还原等
-    
     hybridView.frame = [[UIScreen mainScreen] bounds];
 }
 
@@ -201,10 +162,6 @@
     //NSLog(@"method %@", method);
     if ([method isEqualToString:@"share"]) {
         
-    } else if ([method isEqualToString:@"tip"]) {
-        NSString *params=[command objectForKey:@"params"];
-        [self tip:params];
-        
     } else if  ([method isEqualToString:@"open"]) {
         NSString *params=[command objectForKey:@"params"];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:params]];
@@ -215,11 +172,6 @@
         CPModalWebViewController *webC = [[CPModalWebViewController alloc] initWithAddress:params];
         
         [self presentViewController:webC animated:YES completion:^{}];
-        
-    } else if([method isEqualToString:@"getLocation"]){
-        _locationGettingCallback=callback;
-        [self startGettingLocation];
-        
         
     } else if ([method isEqualToString:@"getDeviceToken"]){
         NSString *key=@"DeviceToken";
@@ -285,7 +237,7 @@
         
         NSLog(@"start upload %@",url);
         
-        [self post:url data:data files:files completion:^(NSString *result){
+        [HttpUtil post:url data:data files:files completion:^(NSString *result){
             [self hybridCallback:callback params:result];
         }];
         
@@ -415,147 +367,6 @@
 }
 
 
-//上传
-- (void)post:(NSString *)url data:(NSDictionary *)data files:(NSDictionary *)files completion:(void (^)(NSString *results))completion
-{
-    
-    //NSLog(path);
-    //分界线的标识符
-    NSString *TWITTERFON_FORM_BOUNDARY = @"AaB03x";
-    //根据url初始化request
-    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]
-                                                           cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
-                                                       timeoutInterval:10];
-    //分界线 --AaB03x
-    NSString *MPboundary=[[NSString alloc]initWithFormat:@"--%@",TWITTERFON_FORM_BOUNDARY];
-    //结束符 AaB03x--
-    NSString *endMPboundary=[[NSString alloc]initWithFormat:@"%@--",MPboundary];
-    //http body的字符串
-    NSMutableString *body=[[NSMutableString alloc]init];
-   
-    if (data!=nil)
-    {
-        //参数的集合的所有key的集合
-        NSArray *keys= [data allKeys];
-        
-        //遍历keys
-        for(int i=0;i<[keys count];i++)
-        {
-            //得到当前key
-            NSString *key=[keys objectAtIndex:i];
-            //NSLog(@"%@:%@",key,[params objectForKey:key]);
-            
-            //添加分界线，换行
-            [body appendFormat:@"%@\r\n",MPboundary];
-            //添加字段名称，换2行
-            [body appendFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n",key];
-            //添加字段的值
-            [body appendFormat:@"%@\r\n",[data objectForKey:key]];
-        }
-    }
-    
-    //声明myRequestData，用来放入http body
-    NSMutableData *myRequestData=[NSMutableData data];
-    
-    if (files!=nil)
-    {
-        NSArray *keys= [files allKeys];
-        //遍历keys
-        for(int i=0;i<[keys count];i++)
-        {
-            //得到当前key
-            NSString *key=[keys objectAtIndex:i];
-            NSString *path=[files objectForKey:key];
-            
-            ////添加分界线，换行
-            [body appendFormat:@"%@\r\n",MPboundary];
-            //声明pic字段，文件名为boris.png
-            [body appendFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n",key,path];
-            //声明上传文件的格式
-            [body appendFormat:@"Content-Type: application/octet-stream\r\n\r\n"];
-           
-        }
-        //将body字符串转化为UTF8格式的二进制
-        [myRequestData appendData:[body dataUsingEncoding:NSUTF8StringEncoding]];
-        
-        for(int i=0;i<[keys count];i++)
-        {
-            //得到当前key
-            NSString *key=[keys objectAtIndex:i];
-            NSString *path=[files objectForKey:key];
-            
-            //将文件的data加入
-            NSData *buffer=[NSData dataWithContentsOfFile:path];
-            //NSData *data=[path dataUsingEncoding:NSUTF8StringEncoding];
-            //NSLog(@"%d",data.length);
-            
-            [myRequestData appendData:buffer];
-        }
-    }
-    else
-    {
-        [myRequestData appendData:[body dataUsingEncoding:NSUTF8StringEncoding]];
-    }
-    
-    //设置HTTPHeader中Content-Type的值
-    if (data!=nil||files!=nil)
-    {
-        //声明结束符：--AaB03x--
-        NSString *end=[[NSString alloc]initWithFormat:@"\r\n%@",endMPboundary];
-        //加入结束符--AaB03x--
-        [myRequestData appendData:[end dataUsingEncoding:NSUTF8StringEncoding]];
-        NSString *content=[[NSString alloc]initWithFormat:@"multipart/form-data; boundary=%@",TWITTERFON_FORM_BOUNDARY];
-        //设置HTTPHeader
-        [request setValue:content forHTTPHeaderField:@"Content-Type"];
-    }
-    
-    //设置Content-Length
-    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[myRequestData length]] forHTTPHeaderField:@"Content-Length"];
-    //设置http body
-    [request setHTTPBody:myRequestData];
-    //http method
-    [request setHTTPMethod:@"POST"];
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        
-        NSString *returnString;
-        if (connectionError == nil) {
-            // 网络请求结束之后执行!
-            // 将Data转换成字符串
-            returnString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            
-        }   else{
-            returnString=nil;
-        }
-        
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            completion(returnString);
-        }];
-    }];
-	
-}
-
--(void)tip:(NSString *)msg
-{
-    
-    alert = [[UIAlertView alloc] initWithTitle:msg message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-    
-    //[alert setBackgroundColor:[UIColor blueColor]];
-    [alert setContentMode:UIViewContentModeScaleAspectFit];
-    [alert show];
-    [alert setBounds:CGRectMake(0, 10, 290, 60 )];
-    
-    
-    //UIActivityIndicatorView *active = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    
-    //active.center = CGPointMake(alert.bounds.size.width/2, alert.bounds.size.height-40);
-    
-    //[alert addSubview:active];
-    
-    //[active startAnimating];
-    
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(y) userInfo:nil repeats:NO];
-}
 
 - (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {

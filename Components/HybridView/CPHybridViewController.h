@@ -10,9 +10,13 @@
 #import <AVFoundation/AVFoundation.h>
 #import "UIHybridView.h"
 
-@protocol CPHybridViewControllerDelegate;
+@protocol CPHybridViewControllerDelegate
+@optional
+- (void)callNativeApi:(NSString *)method command:(NSDictionary *)command;
+@end
 
-@interface CPHybridViewController : UIViewController<UIWebViewDelegate,AVAudioPlayerDelegate,UIHybridViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIScrollViewDelegate>
+
+@interface CPHybridViewController : UIViewController<UIWebViewDelegate,UIHybridViewDelegate,UIScrollViewDelegate,UIImagePickerControllerDelegate,UIScrollViewDelegate>
 {
     
     UIHybridView *hybridView;
@@ -26,8 +30,5 @@
 
 @end
 
-@protocol CPHybridViewControllerDelegate
-- (void)callNativeApi:(NSString *)method command:(NSDictionary *)command;
-@end
 
 

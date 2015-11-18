@@ -9,7 +9,14 @@
 #import "ViewController.h"
 #import "UIHybridView.h"
 #import "ViewUtil.h"
+#import "HttpUtil.h"
 #import "CPModalWebViewController.h"
+#import "BrowserPlugin.h"
+
+//微信APP端相关头文件
+#import "WXApi.h"
+#import "payRequsestHandler.h"
+
 #import <CoreLocation/CoreLocation.h>
 
 @interface ViewController ()<CLLocationManagerDelegate>{
@@ -63,6 +70,7 @@
     hybridView.scalesPageToFit =YES;
     hybridView.delegate = self;
     hybridView.hybridDelegate=self;
+    hybridView.viewController=self;
     
     hybridView.scrollView.delegate = self;
     
@@ -72,7 +80,7 @@
     [(UIScrollView *)[[hybridView subviews] objectAtIndex:0] setBounces:NO];
     [(UIScrollView *)[[hybridView subviews] objectAtIndex:0] setShowsVerticalScrollIndicator:NO];
     
-    //[ViewUtil loadDocument:hybridView url:@"http://www.baicu.com/"];
+    //[ViewUtil loadDocument:hybridView url:@"http://www.baidu.com/"];
     [ViewUtil loadDocument:hybridView url:@"index.html"];
     //[ViewUtil loadDocument:hybridView url:@"http://192.168.0.104:5559/"];
 }
@@ -154,6 +162,7 @@
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
+    
     NSDictionary *userInfo = [notification userInfo];
     NSValue* value = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
     CGRect keyboardRect = [value CGRectValue]; // 这里得到了键盘的frame
@@ -195,20 +204,19 @@
         
         
         
-    } else if ([method isEqualToString:@"tip"]) {
-        NSString *params=[command objectForKey:@"params"];
-        [self tip:params];
-        
     } else if  ([method isEqualToString:@"open"]) {
         NSString *params=[command objectForKey:@"params"];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:params]];
         
     } else if  ([method isEqualToString:@"openInApp"]) {
-        NSString *params=[command objectForKey:@"params"];
         
-        CPModalWebViewController *webC = [[CPModalWebViewController alloc] initWithAddress:params];
+        BrowserPlugin *plugin=[[BrowserPlugin alloc] initWithHybridView:hybridView];
+        [plugin execute:command];
         
-        [self presentViewController:webC animated:YES completion:^{}];
+    }  else if  ([method isEqualToString:@"wxPay"]) {
+        
+        BrowserPlugin *plugin=[[BrowserPlugin alloc] initWithHybridView:hybridView];
+        [plugin execute:command];
         
     } else if([method isEqualToString:@"getLocation"]){
         _locationGettingCallback=callback;
@@ -279,12 +287,9 @@
         
         NSLog(@"start upload %@",url);
         
-        [self post:url data:data files:files completion:^(NSString *result){
+        [HttpUtil post:url data:data files:files completion:^(NSString *result){
             [self hybridCallback:callback params:result];
         }];
-        
-    } else if ([method isEqualToString:@"login"]) {
-        
         
     } else if ([method isEqualToString:@"getRect"]) {
         CGRect rect = [webView frame];
@@ -426,149 +431,6 @@
     return newimage;
 }
 
-
-//上传
-- (void)post:(NSString *)url data:(NSDictionary *)data files:(NSDictionary *)files completion:(void (^)(NSString *results))completion
-{
-    
-    //NSLog(path);
-    //分界线的标识符
-    NSString *TWITTERFON_FORM_BOUNDARY = @"AaB03x";
-    //根据url初始化request
-    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]
-                                                           cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
-                                                       timeoutInterval:10];
-    //分界线 --AaB03x
-    NSString *MPboundary=[[NSString alloc]initWithFormat:@"--%@",TWITTERFON_FORM_BOUNDARY];
-    //结束符 AaB03x--
-    NSString *endMPboundary=[[NSString alloc]initWithFormat:@"%@--",MPboundary];
-    //http body的字符串
-    NSMutableString *body=[[NSMutableString alloc]init];
-   
-    if (data!=nil)
-    {
-        //参数的集合的所有key的集合
-        NSArray *keys= [data allKeys];
-        
-        //遍历keys
-        for(int i=0;i<[keys count];i++)
-        {
-            //得到当前key
-            NSString *key=[keys objectAtIndex:i];
-            //NSLog(@"%@:%@",key,[params objectForKey:key]);
-            
-            //添加分界线，换行
-            [body appendFormat:@"%@\r\n",MPboundary];
-            //添加字段名称，换2行
-            [body appendFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n",key];
-            //添加字段的值
-            [body appendFormat:@"%@\r\n",[data objectForKey:key]];
-        }
-    }
-    
-    //声明myRequestData，用来放入http body
-    NSMutableData *myRequestData=[NSMutableData data];
-    
-    if (files!=nil)
-    {
-        NSArray *keys= [files allKeys];
-        //遍历keys
-        for(int i=0;i<[keys count];i++)
-        {
-            //得到当前key
-            NSString *key=[keys objectAtIndex:i];
-            NSString *path=[files objectForKey:key];
-            
-            ////添加分界线，换行
-            [body appendFormat:@"%@\r\n",MPboundary];
-            //声明pic字段，文件名为boris.png
-            [body appendFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n",key,path];
-            //声明上传文件的格式
-            [body appendFormat:@"Content-Type: application/octet-stream\r\n\r\n"];
-           
-        }
-        //将body字符串转化为UTF8格式的二进制
-        [myRequestData appendData:[body dataUsingEncoding:NSUTF8StringEncoding]];
-        
-        for(int i=0;i<[keys count];i++)
-        {
-            //得到当前key
-            NSString *key=[keys objectAtIndex:i];
-            NSString *path=[files objectForKey:key];
-            
-            //将文件的data加入
-            NSData *buffer=[NSData dataWithContentsOfFile:path];
-            //NSData *data=[path dataUsingEncoding:NSUTF8StringEncoding];
-            //NSLog(@"%d",data.length);
-            
-            [myRequestData appendData:buffer];
-        }
-    }
-    else
-    {
-        [myRequestData appendData:[body dataUsingEncoding:NSUTF8StringEncoding]];
-    }
-    
-    //设置HTTPHeader中Content-Type的值
-    if (data!=nil||files!=nil)
-    {
-        //声明结束符：--AaB03x--
-        NSString *end=[[NSString alloc]initWithFormat:@"\r\n%@",endMPboundary];
-        //加入结束符--AaB03x--
-        [myRequestData appendData:[end dataUsingEncoding:NSUTF8StringEncoding]];
-        NSString *content=[[NSString alloc]initWithFormat:@"multipart/form-data; boundary=%@",TWITTERFON_FORM_BOUNDARY];
-        //设置HTTPHeader
-        [request setValue:content forHTTPHeaderField:@"Content-Type"];
-    }
-    
-    //设置Content-Length
-    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[myRequestData length]] forHTTPHeaderField:@"Content-Length"];
-    //设置http body
-    [request setHTTPBody:myRequestData];
-    //http method
-    [request setHTTPMethod:@"POST"];
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        
-        NSString *returnString;
-        if (connectionError == nil) {
-            // 网络请求结束之后执行!
-            // 将Data转换成字符串
-            returnString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            
-        }   else{
-            returnString=nil;
-        }
-        
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            completion(returnString);
-        }];
-    }];
-	
-}
-
--(void)tip:(NSString *)msg
-{
-    
-    alert = [[UIAlertView alloc] initWithTitle:msg message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-    
-    //[alert setBackgroundColor:[UIColor blueColor]];
-    [alert setContentMode:UIViewContentModeScaleAspectFit];
-    [alert show];
-    [alert setBounds:CGRectMake(0, 10, 290, 60 )];
-    
-    
-    //UIActivityIndicatorView *active = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    
-    //active.center = CGPointMake(alert.bounds.size.width/2, alert.bounds.size.height-40);
-    
-    //[alert addSubview:active];
-    
-    //[active startAnimating];
-    
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(c) userInfo:nil repeats:NO];
-}
-
 - (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
     NSLog(@"开始摇动手机");
@@ -585,5 +447,119 @@
     NSLog(@"取消");
 }
 
+
+//微信支付
+- (void)sendPay
+{
+    //从服务器获取支付参数，服务端自定义处理逻辑和格式
+    //订单标题
+    NSString *ORDER_NAME    = @"Ios服务器端签名支付 测试";
+    //订单金额，单位（元）
+    NSString *ORDER_PRICE   = @"0.01";
+    
+    //根据服务器端编码确定是否转码
+    NSStringEncoding enc;
+    //if UTF8编码
+    enc = NSUTF8StringEncoding;
+    //if GBK编码
+    //enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+    NSString *urlString = [NSString stringWithFormat:@"%@?plat=ios&order_no=%@&product_name=%@&order_price=%@",
+                           SP_URL,
+                           [[NSString stringWithFormat:@"%ld",time(0)] stringByAddingPercentEscapesUsingEncoding:enc],
+                           [ORDER_NAME stringByAddingPercentEscapesUsingEncoding:enc],
+                           ORDER_PRICE];
+    
+    //解析服务端返回json数据
+    NSError *error;
+    //加载一个NSURL对象
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    //将请求的url数据放到NSData对象中
+    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    if ( response != nil) {
+        NSMutableDictionary *dict = NULL;
+        //IOS5自带解析类NSJSONSerialization从response中解析出数据放到字典中
+        dict = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableLeaves error:&error];
+        
+        NSLog(@"url:%@",urlString);
+        if(dict != nil){
+            NSMutableString *retcode = [dict objectForKey:@"retcode"];
+            if (retcode.intValue == 0){
+                NSMutableString *stamp  = [dict objectForKey:@"timestamp"];
+                
+                //调起微信支付
+                PayReq* req             = [[PayReq alloc] init];
+                req.openID              = [dict objectForKey:@"appid"];
+                req.partnerId           = [dict objectForKey:@"partnerid"];
+                req.prepayId            = [dict objectForKey:@"prepayid"];
+                req.nonceStr            = [dict objectForKey:@"noncestr"];
+                req.timeStamp           = stamp.intValue;
+                req.package             = [dict objectForKey:@"package"];
+                req.sign                = [dict objectForKey:@"sign"];
+                [WXApi sendReq:req];
+                //日志输出
+                NSLog(@"appid=%@\npartid=%@\nprepayid=%@\nnoncestr=%@\ntimestamp=%ld\npackage=%@\nsign=%@",req.openID,req.partnerId,req.prepayId,req.nonceStr,(long)req.timeStamp,req.package,req.sign );
+            }else{
+                [self alert:@"提示信息" msg:[dict objectForKey:@"retmsg"]];
+            }
+        }else{
+            [self alert:@"提示信息" msg:@"服务器返回错误，未获取到json对象"];
+        }
+    }else{
+        [self alert:@"提示信息" msg:@"服务器返回错误"];
+    }
+}
+
+
+- (void)sendWXPay_demo
+{
+    //{{{
+    //本实例只是演示签名过程， 请将该过程在商户服务器上实现
+    
+    //创建支付签名对象
+    payRequsestHandler *req = [payRequsestHandler alloc];
+    //初始化支付签名对象
+    [req init:APP_ID mch_id:MCH_ID];
+    //设置密钥
+    [req setKey:PARTNER_ID];
+    
+    //}}}
+    
+    //获取到实际调起微信支付的参数后，在app端调起支付
+    NSMutableDictionary *dict = [req sendPay_demo];
+    
+    if(dict == nil){
+        //错误提示
+        NSString *debug = [req getDebugifo];
+        
+        [self alert:@"提示信息" msg:debug];
+        
+        NSLog(@"%@\n\n",debug);
+    }else{
+        NSLog(@"%@\n\n",[req getDebugifo]);
+        //[self alert:@"确认" msg:@"下单成功，点击OK后调起支付！"];
+        
+        NSMutableString *stamp  = [dict objectForKey:@"timestamp"];
+        
+        //调起微信支付
+        PayReq* req             = [[PayReq alloc] init];
+        req.openID              = [dict objectForKey:@"appid"];
+        req.partnerId           = [dict objectForKey:@"partnerid"];
+        req.prepayId            = [dict objectForKey:@"prepayid"];
+        req.nonceStr            = [dict objectForKey:@"noncestr"];
+        req.timeStamp           = stamp.intValue;
+        req.package             = [dict objectForKey:@"package"];
+        req.sign                = [dict objectForKey:@"sign"];
+        
+        [WXApi sendReq:req];
+    }
+}
+
+//客户端提示信息
+- (void)alert:(NSString *)title msg:(NSString *)msg
+{
+    UIAlertView *alter = [[UIAlertView alloc] initWithTitle:title message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    
+    [alter show];
+}
 
 @end

@@ -6,7 +6,6 @@
 //  Copyright (c) 2015年 Miku. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 
 @interface StringUtil : NSObject{
 }
@@ -17,4 +16,7 @@
 
 +(NSString*)decodeUrl:(NSString *)url;
 
++(NSData*) stringToData:(NSString *)str;
+
++(NSString*) dataToString:(NSData *)data;
 @end

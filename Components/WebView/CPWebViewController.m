@@ -7,8 +7,6 @@
 #import "CPWebViewController.h"
 
 #import "NJKWebViewProgress.h"
-#import "MyURLCache.h"
-
 #import "STTools.h"
 #import "NSEtcHosts.h"
 
@@ -62,6 +60,7 @@ typedef NS_ENUM(NSInteger, ViewType) {
 #pragma mark - Initialization
 
 - (void)dealloc {
+    
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     [self.webView stopLoading];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
@@ -109,7 +108,7 @@ typedef NS_ENUM(NSInteger, ViewType) {
     self.progressProxy.progressView.frame = CGRectMake(0, PROGRESSORIGNH-20, self.view.frame.size.width, PROGRESSHEIGHT);
     
     /// set url cache
-    MyURLCache *shareCache = [[MyURLCache alloc] initWithMemoryCapacity:1024*1024 diskCapacity:0 diskPath:nil];
+    NSURLCache *shareCache = [[NSURLCache alloc] initWithMemoryCapacity:1024*1024 diskCapacity:0 diskPath:nil];
     [NSURLCache setSharedURLCache:shareCache];
     
 }
@@ -318,23 +317,8 @@ typedef NS_ENUM(NSInteger, ViewType) {
     }
 
     
-    /// remove banner or other operate
-    [self removeBanner:webView];
-    [self performSelector:@selector(removeBanner:) withObject:webView afterDelay:0.5];
-    [self performSelector:@selector(removeBanner:) withObject:webView afterDelay:1.5];
 }
 
-/// 去除广告 (这里还可以做一些模拟点击等操作)
-- (void)removeBanner:(UIWebView*)webView {
-    [webView stringByEvaluatingJavaScriptFromString:@"(function() { var taobaoLogo = document.getElementsByClassName(\"new-header new-header-append\");var len = taobaoLogo.length;for(var i = 0; i < len; i++) {taobaoLogo[i].parentNode.removeChild(taobaoLogo[i]);}}())"];
-    [webView stringByEvaluatingJavaScriptFromString:@"(function() { var taobaoLogo = document.getElementById(\"down_app_header\"); if(taobaoLogo)taobaoLogo.parentNode.removeChild(taobaoLogo);}())"];
-    [webView stringByEvaluatingJavaScriptFromString:@"(function() { var taobaoLogo = document.getElementById(\"down_app\"); if(taobaoLogo)taobaoLogo.parentNode.removeChild(taobaoLogo);}())"];
-    [webView stringByEvaluatingJavaScriptFromString:@"(function() { var taobaoLogo = document.getElementById(\"down_app_header\"); if(taobaoLogo)taobaoLogo.parentNode.removeChild(taobaoLogo);}())"];
-    [webView stringByEvaluatingJavaScriptFromString:@"(function() { var taobaoLogo = document.getElementById(\"m_common_tip\"); if(taobaoLogo)taobaoLogo.parentNode.removeChild(taobaoLogo);}())"];
-    [webView stringByEvaluatingJavaScriptFromString:@"(function() { var taobaoLogo = document.getElementById(\"m_common_header\"); if(taobaoLogo)taobaoLogo.parentNode.removeChild(taobaoLogo);}())"];
-    
-    [webView stringByEvaluatingJavaScriptFromString:@"(function() { var taobaoLogo = document.getElementsByClassName(\"new-header\");var len = taobaoLogo.length;for(var i = 0; i < len; i++) {taobaoLogo[i].parentNode.removeChild(taobaoLogo[i]);}}())"];
-}
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];

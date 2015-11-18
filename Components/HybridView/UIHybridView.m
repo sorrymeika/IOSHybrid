@@ -7,6 +7,7 @@
 //
 #import "UIHybridView.h"
 #import "ViewUtil.h"
+#import "StringUtil.h"
 
 @interface UIHybridView ()
 @end
@@ -14,6 +15,7 @@
 @implementation UIHybridView
 
 @synthesize hybridDelegate;
+@synthesize viewController;
 
 -(void)webView:(UIWebView *)sender runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(id)frame{
     
@@ -38,6 +40,10 @@
 -(void)loadRequestWidthAddress:(NSString *)url
 {
     [ViewUtil loadDocument:self url:url];
+}
+
+-(void)callback:(NSString *)callback params:(NSDictionary*) params{
+    [self stringByEvaluatingJavaScriptFromString:[@"window.hybridFunctions." stringByAppendingFormat:@"%@(%@);",callback,[StringUtil stringify:params]]];
 }
 
 @end
