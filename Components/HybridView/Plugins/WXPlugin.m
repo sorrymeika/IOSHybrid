@@ -20,6 +20,7 @@
 
 -(instancetype)initWithHybridView:(UIHybridView *)hybridView{
     self=[super initWithHybridView:hybridView];
+    
     [WXApiManager sharedManager].delegate=self;
     return self;
 }
@@ -27,22 +28,24 @@
 -(void)execute:(NSDictionary *)command{
     callback=[command objectForKey:@"callback"];
     
-    NSString * type=[command objectForKey:@"type"];
+    NSDictionary *params = [command objectForKey:@"params"];
+    
+    NSString * type=[params objectForKey:@"type"];
     
     if ([type isEqualToString:@"pay"]){
-        NSString * spUrl=[command objectForKey:@"spUrl"];
-        NSString * orderCode=[command objectForKey:@"orderCode"];
-        NSString * orderName=[command objectForKey:@"orderName"];
-        NSString * orderPrice=[command objectForKey:@"orderPrice"];
+        NSString * spUrl=[params objectForKey:@"spUrl"];
+        NSString * orderCode=[params objectForKey:@"orderCode"];
+        NSString * orderName=[params objectForKey:@"orderName"];
+        NSString * orderPrice=[params objectForKey:@"orderPrice"];
     
         [self sendPay:spUrl orderCode:orderCode orderName:orderName orderPrice:orderPrice];
         
     } else if ([type isEqualToString:@"shareLinkURL"]){
-        NSString * linkURL=[command objectForKey:@"linkURL"];
-        NSString * tagName=[command objectForKey:@"tagName"];
-        NSString * title=[command objectForKey:@"title"];
-        NSString * description=[command objectForKey:@"description"];
-        NSNumber * scene=[command objectForKey:@"scene"];
+        NSString * linkURL=[params objectForKey:@"linkURL"];
+        NSString * tagName=[params objectForKey:@"tagName"];
+        NSString * title=[params objectForKey:@"title"];
+        NSString * description=[params objectForKey:@"description"];
+        NSNumber * scene=[params objectForKey:@"scene"];
         
         enum WXScene wxScene;
         
@@ -135,6 +138,20 @@
         default:
             NSLog(@"错误，retcode = %d, retstr = %@", response.errCode,response.errStr);
             [self setResult:false msg:response.errStr];
+            break;
+    }
+}
+
+- (void)managerDidRecvMessageResponse:(SendMessageToWXResp *)response {
+    switch (response.errCode) {
+        case WXSuccess:
+            NSLog(@"分享成功，retcode = %d", response.errCode);
+            [self setResult:true msg:@"分享成功"];
+            break;
+            
+        default:
+            NSLog(@"错误，retcode = %d, retstr = %@", response.errCode,response.errStr);
+            [self setResult:false msg: [NSString stringWithFormat: @"%@", response.errStr]];
             break;
     }
 }

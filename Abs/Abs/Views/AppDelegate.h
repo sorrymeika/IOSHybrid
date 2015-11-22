@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/TencentOAuthObject.h>
 
 @class ViewController;
 
@@ -15,5 +17,7 @@
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) ViewController *viewController;
+
+@property (retain, nonatomic) TencentOAuth *tencentOAuth;
 
 @end

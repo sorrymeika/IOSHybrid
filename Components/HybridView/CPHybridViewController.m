@@ -185,46 +185,9 @@
         [self hybridCallback:callback params:params];
         
     } else if ([method isEqualToString:@"takePhoto"]) {
-        self.pickImageCallback=callback;
-        
-        //判断是否支持相机
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-        {
-            // 跳转到相机或相册页面
-            UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-            
-            imagePickerController.delegate = self;
-            
-            imagePickerController.allowsEditing = YES;
-            
-            imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-            
-            [self presentViewController:imagePickerController animated:YES completion:^{}];
-            
-            //[imagePickerController release];
-        }
-        else
-        {
-            UIAlertView *alertView =[[UIAlertView alloc] initWithTitle:nil message:@"相机不能用" delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles:nil];
-            [alertView show];
-            //[alertView release];
-        }
         
     } else if ([method isEqualToString:@"pickImage"]) {
-        self.pickImageCallback=callback;
         
-        // 跳转到相机或相册页面
-        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-        
-        imagePickerController.delegate = self;
-        
-        imagePickerController.allowsEditing = YES;
-        
-        imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        
-        [self presentViewController:imagePickerController animated:YES completion:^{}];
-        
-        //[imagePickerController release];
         
         
     }  else if ([method isEqualToString:@"post"]) {

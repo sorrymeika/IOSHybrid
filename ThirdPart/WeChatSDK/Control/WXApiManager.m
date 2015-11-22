@@ -27,6 +27,7 @@
 
 #pragma mark - WXApiDelegate
 - (void)onResp:(BaseResp *)resp {
+    
     if ([resp isKindOfClass:[SendMessageToWXResp class]]) {
         if (_delegate
             && [_delegate respondsToSelector:@selector(managerDidRecvMessageResponse:)]) {
@@ -55,6 +56,7 @@
 }
 
 - (void)onReq:(BaseReq *)req {
+    
     if ([req isKindOfClass:[GetMessageFromWXReq class]]) {
         if (_delegate
             && [_delegate respondsToSelector:@selector(managerDidRecvGetMessageReq:)]) {

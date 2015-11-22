@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "WXApiManager.h"
 #import "ViewController.h"
+#import <TencentOpenAPI/TencentOAuth.h>
+#import "QQApiManager.h"
 
 @implementation AppDelegate
 
@@ -49,20 +51,33 @@
     
     [self.window makeKeyAndVisible];
     
-    
     //向微信注册
     [WXApi registerApp:@"wx30172a8b2698d276" withDescription:@"ABS家居"];
     
+    
+    
+    self.tencentOAuth = [[TencentOAuth alloc] initWithAppId:@"222222" andDelegate:[QQApiManager getInstance]];
+    /*
+    NSArray* permissions = [NSArray arrayWithObjects:
+                            kOPEN_PERMISSION_GET_USER_INFO,
+                            kOPEN_PERMISSION_GET_SIMPLE_USER_INFO,
+                            kOPEN_PERMISSION_ADD_SHARE,
+                            nil];
+    [self.tencentOAuth authorize:permissions inSafari:NO];
+     */
+
     return YES;
 }
 
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    return  [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+    
+    return  [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]]||[TencentOAuth HandleOpenURL:url];
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+    
+    return [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]]||[TencentOAuth HandleOpenURL:url];;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
