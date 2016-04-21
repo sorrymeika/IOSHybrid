@@ -10,6 +10,7 @@
 #import "payRequsestHandler.h"
 #import "WXApiRequestHandler.h"
 #import "FileUtil.h"
+#import "HttpUtil.h"
 
 @interface WXPlugin ()<WXApiManagerDelegate>{
     NSString *callback;
@@ -44,6 +45,7 @@
         NSString * linkURL=[params objectForKey:@"linkURL"];
         NSString * tagName=[params objectForKey:@"tagName"];
         NSString * title=[params objectForKey:@"title"];
+        NSString * image=[params objectForKey:@"image"];
         NSString * description=[params objectForKey:@"description"];
         NSNumber * scene=[params objectForKey:@"scene"];
         
@@ -55,7 +57,16 @@
             wxScene=WXSceneTimeline;
         }
         
-        UIImage *thumbImage = [FileUtil pathToImage:@"default.jpg"];
+        UIImage *thumbImage;
+        
+        NSLog(@"share image:%@",image);
+        
+        if (image==nil||[image isEqualToString: @""]) {
+            thumbImage = [FileUtil pathToImage:@"default.png"];
+        } else {
+            thumbImage = [HttpUtil getImage:image];
+        }
+        
         
         [WXApiRequestHandler sendLinkURL:linkURL
                                  TagName:tagName
@@ -88,44 +99,54 @@
                            [orderName stringByAddingPercentEscapesUsingEncoding:enc],
                            orderPrice];
     
-    //解析服务端返回json数据
-    NSError *error;
+    
     //加载一个NSURL对象
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     //将请求的url数据放到NSData对象中
-    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-    if ( response != nil) {
-        NSMutableDictionary *dict = NULL;
-        //IOS5自带解析类NSJSONSerialization从response中解析出数据放到字典中
-        dict = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableLeaves error:&error];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
-        NSLog(@"url:%@",urlString);
-        if(dict != nil){
-            NSMutableString *retcode = [dict objectForKey:@"retcode"];
-            if (retcode.intValue == 0){
-                NSMutableString *stamp  = [dict objectForKey:@"timestamp"];
+        if (connectionError == nil) {
+            // 网络请求结束之后执行!
+            // 将Data转换成字符串
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 
-                //调起微信支付
-                PayReq* req             = [[PayReq alloc] init];
-                req.openID              = [dict objectForKey:@"appid"];
-                req.partnerId           = [dict objectForKey:@"partnerid"];
-                req.prepayId            = [dict objectForKey:@"prepayid"];
-                req.nonceStr            = [dict objectForKey:@"noncestr"];
-                req.timeStamp           = stamp.intValue;
-                req.package             = [dict objectForKey:@"package"];
-                req.sign                = [dict objectForKey:@"sign"];
-                [WXApi sendReq:req];
-                //日志输出
-                NSLog(@"appid=%@\npartid=%@\nprepayid=%@\nnoncestr=%@\ntimestamp=%ld\npackage=%@\nsign=%@",req.openID,req.partnerId,req.prepayId,req.nonceStr,(long)req.timeStamp,req.package,req.sign );
-            }else{
-                [self setResult:false msg:[dict objectForKey:@"retmsg"]];
-            }
-        }else{
-            [self setResult:false msg:@"服务器返回错误，未获取到json对象"];
+                NSError *error;
+                NSMutableDictionary *dict = NULL;
+                //IOS5自带解析类NSJSONSerialization从response中解析出数据放到字典中
+                dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&error];
+                
+                NSLog(@"url:%@",urlString);
+                if(dict != nil){
+                    NSMutableString *retcode = [dict objectForKey:@"retcode"];
+                    if (retcode.intValue == 0){
+                        NSMutableString *stamp  = [dict objectForKey:@"timestamp"];
+                        
+                        //调起微信支付
+                        PayReq* req             = [[PayReq alloc] init];
+                        req.openID              = [dict objectForKey:@"appid"];
+                        req.partnerId           = [dict objectForKey:@"partnerid"];
+                        req.prepayId            = [dict objectForKey:@"prepayid"];
+                        req.nonceStr            = [dict objectForKey:@"noncestr"];
+                        req.timeStamp           = stamp.intValue;
+                        req.package             = [dict objectForKey:@"package"];
+                        req.sign                = [dict objectForKey:@"sign"];
+                        [WXApi sendReq:req];
+                        //日志输出
+                        NSLog(@"appid=%@\npartid=%@\nprepayid=%@\nnoncestr=%@\ntimestamp=%ld\npackage=%@\nsign=%@",req.openID,req.partnerId,req.prepayId,req.nonceStr,(long)req.timeStamp,req.package,req.sign );
+                    }else{
+                        [self setResult:false msg:[dict objectForKey:@"retmsg"]];
+                    }
+                }else{
+                    [self setResult:false msg:@"服务器返回错误，未获取到json对象"];
+                }
+                
+            }];
+            
+        } else{
+            [self setResult:false msg:@"服务器返回错误"];
         }
-    }else{
-        [self setResult:false msg:@"服务器返回错误"];
-    }
+    }];
 }
 
 - (void)managerDidRecvPayResponse:(PayResp *)response{
@@ -133,6 +154,11 @@
         case WXSuccess:
             NSLog(@"支付成功－PaySuccess，retcode = %d", response.errCode);
             [self setResult:true msg:@"支付成功"];
+            break;
+            
+        case -2:
+            NSLog(@"支付成功－PayCancel，retcode = %d", response.errCode);
+            [self setResult:false msg:@"您已取消支付"];
             break;
             
         default:
@@ -161,7 +187,7 @@
 {
     [_hybridView callback:callback params:@{
                                             @"success": [NSNumber numberWithBool:success],
-                                            @"msg": msg
+                                            @"msg": msg==NULL?@"":msg
                                             }];
 }
 

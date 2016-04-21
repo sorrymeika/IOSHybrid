@@ -13,4 +13,6 @@
 
 + (void)post:(NSString *)url data:(NSDictionary *)data files:(NSDictionary *)files completion:(void (^)(NSString *results))completion;
 
++ (UIImage *)getImage:(NSString *)src;
+
 @end

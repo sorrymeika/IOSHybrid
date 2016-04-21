@@ -39,7 +39,7 @@
         
         NSURL* url = [NSURL URLWithString:linkURL];
         
-        NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"share.jpg"];
+        NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"default.png"];
         NSData* data = [NSData dataWithContentsOfFile:path];
         
         QQApiNewsObject* img = [QQApiNewsObject objectWithURL:url title:title description:description previewImageData:data];

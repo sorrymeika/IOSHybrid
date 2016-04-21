@@ -16,6 +16,7 @@
 #import "LocationPlugin.h"
 #import "ImagePlugin.h"
 #import "QQPlugin.h"
+#import "AliPlugin.h"
 #import "HybridAction.h"
 
 
@@ -76,6 +77,7 @@
     plugins=@{
               @"openInApp":[[BrowserPlugin alloc] initWithHybridView:hybridView],
               @"wx": [[WXPlugin alloc] initWithHybridView:hybridView],
+              @"ali": [[AliPlugin alloc] initWithHybridView:hybridView],
               @"getLocation": [[LocationPlugin alloc] initWithHybridView:hybridView],
               @"pickImage": [[ImagePlugin alloc] initWithHybridView:hybridView],
               @"qq": [[QQPlugin alloc] initWithHybridView:hybridView]
@@ -85,6 +87,7 @@
     //[ViewUtil loadDocument:hybridView url:@"http://www.baidu.com/"];
     [ViewUtil loadDocument:hybridView url:@"index.html"];
     //[ViewUtil loadDocument:hybridView url:@"http://192.168.0.104:5559/"];
+    //[ViewUtil loadDocument:hybridView url:@"http://10.0.74.50:5559/"];
     
     NSLog(@"width %f",[[UIScreen mainScreen] bounds].size.width);
 }
@@ -169,6 +172,7 @@
         
     } else if  ([method isEqualToString:@"open"]) {
         NSString *params=[command objectForKey:@"params"];
+        NSLog(@"%@",params);
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:params]];
         
     } else if ([method isEqualToString:@"getDeviceToken"]){

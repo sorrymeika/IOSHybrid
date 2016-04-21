@@ -52,11 +52,10 @@
     [self.window makeKeyAndVisible];
     
     //向微信注册
-    [WXApi registerApp:@"wx30172a8b2698d276" withDescription:@"ABS家居"];
+    [WXApi registerApp:@"wx736fd22e825a9ce5" withDescription:@"ABS家居"];
     
     
-    
-    self.tencentOAuth = [[TencentOAuth alloc] initWithAppId:@"222222" andDelegate:[QQApiManager getInstance]];
+    self.tencentOAuth = [[TencentOAuth alloc] initWithAppId:@"1104874974" andDelegate:[QQApiManager getInstance]];
     /*
     NSArray* permissions = [NSArray arrayWithObjects:
                             kOPEN_PERMISSION_GET_USER_INFO,
@@ -72,7 +71,21 @@
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
     
-    return  [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]]||[TencentOAuth HandleOpenURL:url];
+    NSString *urlStr =[url absoluteString];
+    
+    if ([urlStr hasPrefix:@"wx"])
+    {
+        return  [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+    }
+    else if ([urlStr hasPrefix:@"tencent"])
+    {
+        return [TencentOAuth HandleOpenURL:url];
+    }
+    else if ([urlStr hasPrefix:@"abschinapp"])
+    {
+        return true;
+    }
+    return false;
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
@@ -90,6 +103,7 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
+    [[UIApplication sharedApplication]setApplicationIconBadgeNumber:0];//进入前台取消应用消息图标
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

@@ -21,7 +21,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>5</string>
+	<string>10</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -33,7 +33,7 @@
 			<string>weixin</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>wx30172a8b2698d276</string>
+				<string>wx736fd22e825a9ce5</string>
 			</array>
 		</dict>
 		<dict>
@@ -43,12 +43,29 @@
 			<string>tencent</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>tencent222222</string>
+				<string>tencent1104874974</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>abs</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>abschinapp</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.0.3</string>
+	<string>1.2.0</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>mqq</string>
+		<string>mqqapi</string>
+		<string>mqqopensdkapiV2</string>
+		<string>urlscheme4</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

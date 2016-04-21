@@ -11,6 +11,13 @@
 @implementation HttpUtil : NSObject
 
 
++ (UIImage *) getImage:(NSString *)src {
+
+    NSURL *url = [NSURL URLWithString:src];
+    return [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+}
+
+
 //上传
 + (void)post:(NSString *)url data:(NSDictionary *)data files:(NSDictionary *)files completion:(void (^)(NSString *results))completion
 {
