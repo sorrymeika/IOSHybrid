@@ -14,11 +14,15 @@
 
 @implementation AppDelegate
 
+- (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    return YES;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    //[NSThread sleepForTimeInterval:1.5];
+    
     
     if ([application respondsToSelector:@selector(isRegisteredForRemoteNotifications)]) {
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIRemoteNotificationTypeBadge
@@ -33,6 +37,7 @@
                                                          |UIRemoteNotificationTypeAlert)];
     }
     
+    
     [[[NSBundle mainBundle] infoDictionary] valueForKey:@"key"];
     
     UIWebView* webView = [[UIWebView alloc] initWithFrame:CGRectZero];
@@ -46,10 +51,12 @@
     self.viewController = [[ViewController alloc] init];
     self.window.rootViewController = self.viewController;
     
-    //[[UIApplication sharedApplication] setStatusBarHidden:NO];
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    
+    //[NSThread sleepForTimeInterval:1.5];
     
     [self.window makeKeyAndVisible];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
     
     //向微信注册
     [WXApi registerApp:@"wx736fd22e825a9ce5" withDescription:@"ABS家居"];

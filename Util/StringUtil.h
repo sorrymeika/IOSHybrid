@@ -19,4 +19,5 @@
 +(NSData*) stringToData:(NSString *)str;
 
 +(NSString*) dataToString:(NSData *)data;
+
 @end

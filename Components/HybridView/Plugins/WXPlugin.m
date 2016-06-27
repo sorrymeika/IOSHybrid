@@ -61,7 +61,7 @@
         
         NSLog(@"share image:%@",image);
         
-        if (image==nil||[image isEqualToString: @""]) {
+        if (image == nil || [image isEqual:[NSNull null]] || [image isEqualToString: @""]) {
             thumbImage = [FileUtil pathToImage:@"default.png"];
         } else {
             thumbImage = [HttpUtil getImage:image];

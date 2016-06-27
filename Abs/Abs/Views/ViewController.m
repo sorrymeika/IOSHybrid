@@ -18,6 +18,7 @@
 #import "QQPlugin.h"
 #import "AliPlugin.h"
 #import "HybridAction.h"
+#import "SystemPlugin.h"
 
 
 @interface ViewController (){
@@ -62,7 +63,7 @@
     //初始化webview
     hybridView = [[UIHybridView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.view addSubview:hybridView];
-    [hybridView setBackgroundColor:[UIColor clearColor]];
+    [hybridView setBackgroundColor:[UIColor whiteColor]];
     hybridView.scalesPageToFit =YES;
     hybridView.delegate = self;
     hybridView.hybridDelegate=self;
@@ -80,7 +81,8 @@
               @"ali": [[AliPlugin alloc] initWithHybridView:hybridView],
               @"getLocation": [[LocationPlugin alloc] initWithHybridView:hybridView],
               @"pickImage": [[ImagePlugin alloc] initWithHybridView:hybridView],
-              @"qq": [[QQPlugin alloc] initWithHybridView:hybridView]
+              @"qq": [[QQPlugin alloc] initWithHybridView:hybridView],
+              @"system": [[SystemPlugin alloc] initWithHybridView:hybridView]
             };
 
     

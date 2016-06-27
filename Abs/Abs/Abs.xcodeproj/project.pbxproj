@@ -87,6 +87,8 @@
 		60F1C5021B7E6DF60043FEA1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F1C4FE1B7E6DF60043FEA1 /* main.m */; };
 		60F289901B810DB20087284C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60F2898E1B810DB20087284C /* LaunchScreen.xib */; };
 		60F289931B810E150087284C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 60F289911B810E150087284C /* InfoPlist.strings */; };
+		60FD3A8B1D20FA9900DAF212 /* SystemPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FD3A8A1D20FA9900DAF212 /* SystemPlugin.m */; };
+		60FD3A951D20FF4500DAF212 /* KeyChainUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FD3A941D20FF4500DAF212 /* KeyChainUtil.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -298,6 +300,11 @@
 		60F1C4FE1B7E6DF60043FEA1 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Views/main.m; sourceTree = SOURCE_ROOT; };
 		60F2898F1B810DB20087284C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = Views/en.lproj/LaunchScreen.xib; sourceTree = SOURCE_ROOT; };
 		60F289921B810E150087284C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Views/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		60FD3A891D20FA9900DAF212 /* SystemPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemPlugin.h; sourceTree = "<group>"; };
+		60FD3A8A1D20FA9900DAF212 /* SystemPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemPlugin.m; sourceTree = "<group>"; };
+		60FD3A8C1D20FD4B00DAF212 /* Abs.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Abs.entitlements; sourceTree = "<group>"; };
+		60FD3A901D20FEF200DAF212 /* KeyChainUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyChainUtil.h; sourceTree = "<group>"; };
+		60FD3A941D20FF4500DAF212 /* KeyChainUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyChainUtil.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -330,6 +337,7 @@
 		2F0806061802E52F00D40F7C = {
 			isa = PBXGroup;
 			children = (
+				60FD3A8C1D20FD4B00DAF212 /* Abs.entitlements */,
 				6023DF211CA3B66200F83554 /* default.png */,
 				6098070B1C3B94D200BCF840 /* AliSDK */,
 				60DAA52B1C015A9700DB6037 /* QQSDK */,
@@ -694,6 +702,8 @@
 		60E767B61BF5E66D00CCAA95 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				60FD3A891D20FA9900DAF212 /* SystemPlugin.h */,
+				60FD3A8A1D20FA9900DAF212 /* SystemPlugin.m */,
 				609807841C3B996900BCF840 /* AliPlugin.h */,
 				609807851C3B996900BCF840 /* AliPlugin.m */,
 				60DE9B201C00CBD700B671EA /* QQPlugin.h */,
@@ -725,6 +735,8 @@
 				60E4A0E11B8C552700F57174 /* STTools.m */,
 				60F1C3AD1B81A1DA00995C1A /* ViewUtil.h */,
 				60F1C3AE1B81A1DA00995C1A /* ViewUtil.m */,
+				60FD3A901D20FEF200DAF212 /* KeyChainUtil.h */,
+				60FD3A941D20FF4500DAF212 /* KeyChainUtil.m */,
 			);
 			name = Util;
 			path = ../../Util;
@@ -762,6 +774,11 @@
 				TargetAttributes = {
 					2F0806101802E52F00D40F7C = {
 						DevelopmentTeam = E88TJ45E98;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -841,6 +858,7 @@
 				60E4A0E21B8C552700F57174 /* STTools.m in Sources */,
 				60DE9B1B1C00B8D700B671EA /* MotionPlugin.m in Sources */,
 				60D7186E1BF18AD5001524C9 /* WXApiManager.m in Sources */,
+				60FD3A951D20FF4500DAF212 /* KeyChainUtil.m in Sources */,
 				60D718731BF18AD5001524C9 /* WXMediaMessage+messageConstruct.m in Sources */,
 				60D8AE111BAC5CDC0050C032 /* UIHybridView.m in Sources */,
 				60F1C3AF1B81A1DA00995C1A /* ViewUtil.m in Sources */,
@@ -880,6 +898,7 @@
 				609807751C3B94D200BCF840 /* DataSigner.m in Sources */,
 				60DB105A1BE1BEEB00549A80 /* HttpUtil.m in Sources */,
 				60D718701BF18AD5001524C9 /* WXApiResponseHandler.m in Sources */,
+				60FD3A8B1D20FA9900DAF212 /* SystemPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1010,6 +1029,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = Abs.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -1051,7 +1071,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: ABS HOME FASHION HOLDINGS LIMITED (E88TJ45E98)";
+				CODE_SIGN_ENTITLEMENTS = Abs.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ABS HOME FASHION HOLDINGS LIMITED (E88TJ45E98)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1133,7 +1154,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: ABS HOME FASHION HOLDINGS LIMITED (E88TJ45E98)";
+				CODE_SIGN_ENTITLEMENTS = Abs.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ABS HOME FASHION HOLDINGS LIMITED (E88TJ45E98)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
