@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,9 @@
 		2F969071196D90EE00E32381 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F969070196D90EE00E32381 /* Security.framework */; };
 		2F9FAAFA1970D95700DFB77C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F9FAAF71970D95700DFB77C /* Images.xcassets */; };
 		6023DF221CA3B66200F83554 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6023DF211CA3B66200F83554 /* default.png */; };
+		603C2ABD1D37EB5100BC38F1 /* cmbkeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 603C2ABC1D37EB5100BC38F1 /* cmbkeyboard.framework */; };
+		606783541D336F0F000225F7 /* back_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 606783531D336F0F000225F7 /* back_arrow@2x.png */; };
+		606783571D336F60000225F7 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 606783561D336F60000225F7 /* WebViewController.m */; };
 		609807701C3B94D200BCF840 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6098070C1C3B94D200BCF840 /* AlipaySDK.bundle */; };
 		609807711C3B94D200BCF840 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6098070D1C3B94D200BCF840 /* AlipaySDK.framework */; };
 		609807721C3B94D200BCF840 /* APAuthV2Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 6098070F1C3B94D200BCF840 /* APAuthV2Info.m */; };
@@ -33,6 +36,7 @@
 		609807831C3B984C00BCF840 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 609807821C3B984C00BCF840 /* CoreMotion.framework */; };
 		609807861C3B996900BCF840 /* AliPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 609807851C3B996900BCF840 /* AliPlugin.m */; };
 		60AA1F221B8E1FBD007A203C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60AA1F211B8E1FBD007A203C /* CoreLocation.framework */; };
+		60BE4D911D36539F0010385E /* CMBWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60BE4D8F1D36539F0010385E /* CMBWebViewController.m */; };
 		60D1B6B51B65C20900E3C8EB /* controller.js in Resources */ = {isa = PBXBuildFile; fileRef = 60D1B6B31B65C20900E3C8EB /* controller.js */; };
 		60D1B6B61B65C20900E3C8EB /* slan.m.js in Resources */ = {isa = PBXBuildFile; fileRef = 60D1B6B41B65C20900E3C8EB /* slan.m.js */; };
 		60D7186E1BF18AD5001524C9 /* WXApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D7185E1BF18AD5001524C9 /* WXApiManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -102,6 +106,10 @@
 		2F969070196D90EE00E32381 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		2F9FAAF71970D95700DFB77C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = images/Images.xcassets; sourceTree = "<group>"; };
 		6023DF211CA3B66200F83554 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
+		603C2ABC1D37EB5100BC38F1 /* cmbkeyboard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = cmbkeyboard.framework; path = ../../ThirdPart/CMBPay/cmbkeyboard.framework; sourceTree = "<group>"; };
+		606783531D336F0F000225F7 /* back_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_arrow@2x.png"; sourceTree = "<group>"; };
+		606783551D336F60000225F7 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		606783561D336F60000225F7 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		6098070C1C3B94D200BCF840 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		6098070D1C3B94D200BCF840 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlipaySDK.framework; path = ../../ThirdPart/AliSDK/AlipaySDK.framework; sourceTree = "<group>"; };
 		6098070E1C3B94D200BCF840 /* APAuthV2Info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APAuthV2Info.h; sourceTree = "<group>"; };
@@ -206,6 +214,8 @@
 		609807841C3B996900BCF840 /* AliPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AliPlugin.h; sourceTree = "<group>"; };
 		609807851C3B996900BCF840 /* AliPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AliPlugin.m; sourceTree = "<group>"; };
 		60AA1F211B8E1FBD007A203C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		60BE4D8E1D36539F0010385E /* CMBWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMBWebViewController.h; sourceTree = "<group>"; };
+		60BE4D8F1D36539F0010385E /* CMBWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMBWebViewController.m; sourceTree = "<group>"; };
 		60D1B6B31B65C20900E3C8EB /* controller.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = controller.js; path = files/controller.js; sourceTree = "<group>"; };
 		60D1B6B41B65C20900E3C8EB /* slan.m.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = slan.m.js; path = files/slan.m.js; sourceTree = "<group>"; };
 		60D7185D1BF18AD5001524C9 /* WXApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiManager.h; sourceTree = "<group>"; };
@@ -312,6 +322,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				603C2ABD1D37EB5100BC38F1 /* cmbkeyboard.framework in Frameworks */,
 				609807831C3B984C00BCF840 /* CoreMotion.framework in Frameworks */,
 				60D7187C1BF194A7001524C9 /* libz.tbd in Frameworks */,
 				60D718821BF1B709001524C9 /* TencentOpenAPI.framework in Frameworks */,
@@ -337,6 +348,8 @@
 		2F0806061802E52F00D40F7C = {
 			isa = PBXGroup;
 			children = (
+				60BE4D8C1D36539F0010385E /* CMBPay */,
+				606783531D336F0F000225F7 /* back_arrow@2x.png */,
 				60FD3A8C1D20FD4B00DAF212 /* Abs.entitlements */,
 				6023DF211CA3B66200F83554 /* default.png */,
 				6098070B1C3B94D200BCF840 /* AliSDK */,
@@ -368,6 +381,7 @@
 		2F0806141802E52F00D40F7C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				603C2ABC1D37EB5100BC38F1 /* cmbkeyboard.framework */,
 				609807821C3B984C00BCF840 /* CoreMotion.framework */,
 				60D7187F1BF1B709001524C9 /* TencentOpenApi_IOS_Bundle.bundle */,
 				60D718801BF1B709001524C9 /* TencentOpenAPI.framework */,
@@ -534,6 +548,16 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
+		60BE4D8C1D36539F0010385E /* CMBPay */ = {
+			isa = PBXGroup;
+			children = (
+				60BE4D8E1D36539F0010385E /* CMBWebViewController.h */,
+				60BE4D8F1D36539F0010385E /* CMBWebViewController.m */,
+			);
+			name = CMBPay;
+			path = ../../ThirdPart/CMBPay;
+			sourceTree = "<group>";
+		};
 		60D7185B1BF18AD5001524C9 /* WeChatSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -618,6 +642,8 @@
 		60E4A0B31B8C54D000F57174 /* WebView */ = {
 			isa = PBXGroup;
 			children = (
+				606783551D336F60000225F7 /* WebViewController.h */,
+				606783561D336F60000225F7 /* WebViewController.m */,
 				60E4A0E71B8C55D100F57174 /* CPModalWebViewController.h */,
 				60E4A0E81B8C55D100F57174 /* CPModalWebViewController.m */,
 				60E4A0B41B8C54D000F57174 /* CPWebViewController.strings */,
@@ -769,7 +795,7 @@
 		2F0806081802E52F00D40F7C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = Miku;
 				TargetAttributes = {
 					2F0806101802E52F00D40F7C = {
@@ -783,7 +809,7 @@
 				};
 			};
 			buildConfigurationList = 2F08060B1802E52F00D40F7C /* Build configuration list for PBXProject "Abs" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -807,6 +833,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				609807701C3B94D200BCF840 /* AlipaySDK.bundle in Resources */,
+				606783541D336F0F000225F7 /* back_arrow@2x.png in Resources */,
 				60DE9B1D1C00BF8E00B671EA /* components.js in Resources */,
 				60D718811BF1B709001524C9 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				2F42A8971A051EFC00332167 /* images in Resources */,
@@ -889,12 +916,14 @@
 				60DD8F941BB1374C00AFCB68 /* StringUtil.m in Sources */,
 				60DE9B181C00B3EF00B671EA /* ImagePlugin.m in Sources */,
 				609807791C3B94D200BCF840 /* openssl_wrapper.m in Sources */,
+				60BE4D911D36539F0010385E /* CMBWebViewController.m in Sources */,
 				60DE9B221C00CBD700B671EA /* QQPlugin.m in Sources */,
 				609807721C3B94D200BCF840 /* APAuthV2Info.m in Sources */,
 				60E4A0E91B8C55D100F57174 /* CPModalWebViewController.m in Sources */,
 				60D718711BF18AD5001524C9 /* GetMessageFromWXResp+responseWithTextOrMediaMessage.m in Sources */,
 				60E4A0DF1B8C54D000F57174 /* SVWebViewControllerActivity.m in Sources */,
 				609807741C3B94D200BCF840 /* base64.m in Sources */,
+				606783571D336F60000225F7 /* WebViewController.m in Sources */,
 				609807751C3B94D200BCF840 /* DataSigner.m in Sources */,
 				60DB105A1BE1BEEB00549A80 /* HttpUtil.m in Sources */,
 				60D718701BF18AD5001524C9 /* WXApiResponseHandler.m in Sources */,
@@ -947,11 +976,12 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Xue Jiao Zhou (7R9D3X5353)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Xue Jiao Zhou (SCVNY69PNW)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Xue Jiao Zhou (7R9D3X5353)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../ThirdPart/CMBPay";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -970,14 +1000,12 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				LIBRARY_SEARCH_PATHS = (
-					"$(SRCROOT)/../../ThirdPart/WeChatSDK",
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -994,10 +1022,11 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Xue Jiao Zhou (7R9D3X5353)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Xue Jiao Zhou (7R9D3X5353)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: ABS HOME FASHION HOLDINGS LIMITED (E88TJ45E98)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ABS HOME FASHION HOLDINGS LIMITED (E88TJ45E98)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../ThirdPart/CMBPay";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -1009,16 +1038,14 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				LIBRARY_SEARCH_PATHS = (
-					"$(SRCROOT)/../../ThirdPart/WeChatSDK",
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -1035,9 +1062,11 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/../../ThirdPart/QQSDK\"",
-					"\"$(SRCROOT)/../../ThirdPart/AliSDK\"",
+					"$(SRCROOT)",
+					"$(SRCROOT)/../../ThirdPart/QQSDK",
+					"$(SRCROOT)/../../ThirdPart/AliSDK",
+					"$(PROJECT_DIR)",
+					"$(SRCROOT)/../../ThirdPart/CMBPay",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Views/Abs-Prefix.pch";
@@ -1049,9 +1078,9 @@
 					"$(SRCROOT)",
 					"\"$(SRCROOT)/../../ThirdPart/WeChatSDK\"",
 					"\"$(SRCROOT)/../../ThirdPart/QQSDK\"",
-					"$(SDKROOT)/usr/lib/system",
 					"\"$(SRCROOT)/../../ThirdPart/AliSDK\"",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.abs.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Abs;
 				PROVISIONING_PROFILE = "";
@@ -1077,9 +1106,11 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/../../ThirdPart/QQSDK\"",
-					"\"$(SRCROOT)/../../ThirdPart/AliSDK\"",
+					"$(SRCROOT)",
+					"$(SRCROOT)/../../ThirdPart/QQSDK",
+					"$(SRCROOT)/../../ThirdPart/AliSDK",
+					"$(PROJECT_DIR)",
+					"$(SRCROOT)/../../ThirdPart/CMBPay",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Views/Abs-Prefix.pch";
@@ -1091,7 +1122,6 @@
 					"$(SRCROOT)",
 					"\"$(SRCROOT)/../../ThirdPart/WeChatSDK\"",
 					"\"$(SRCROOT)/../../ThirdPart/QQSDK\"",
-					"$(SDKROOT)/usr/lib/system",
 					"\"$(SRCROOT)/../../ThirdPart/AliSDK\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.abs.$(PRODUCT_NAME:rfc1034identifier)";
@@ -1119,10 +1149,11 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Xue Jiao Zhou (7R9D3X5353)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Xue Jiao Zhou (7R9D3X5353)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: ABS HOME FASHION HOLDINGS LIMITED (E88TJ45E98)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ABS HOME FASHION HOLDINGS LIMITED (E88TJ45E98)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../ThirdPart/CMBPay";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -1134,16 +1165,14 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				LIBRARY_SEARCH_PATHS = (
-					"$(SRCROOT)/../../ThirdPart/WeChatSDK",
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Distribution;
 		};
@@ -1160,9 +1189,11 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/../../ThirdPart/QQSDK\"",
-					"\"$(SRCROOT)/../../ThirdPart/AliSDK\"",
+					"$(SRCROOT)",
+					"$(SRCROOT)/../../ThirdPart/QQSDK",
+					"$(SRCROOT)/../../ThirdPart/AliSDK",
+					"$(PROJECT_DIR)",
+					"$(SRCROOT)/../../ThirdPart/CMBPay",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Views/Abs-Prefix.pch";
@@ -1174,7 +1205,6 @@
 					"$(SRCROOT)",
 					"\"$(SRCROOT)/../../ThirdPart/WeChatSDK\"",
 					"\"$(SRCROOT)/../../ThirdPart/QQSDK\"",
-					"$(SDKROOT)/usr/lib/system",
 					"\"$(SRCROOT)/../../ThirdPart/AliSDK\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.abs.$(PRODUCT_NAME:rfc1034identifier)";

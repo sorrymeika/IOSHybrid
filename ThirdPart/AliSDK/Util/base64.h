@@ -60,7 +60,7 @@ int base64_self_test( int verbose );
 #endif
 
 
-@interface Base64 : NSObject
+@interface Base64_ : NSObject
 
 + (NSData *)decodeString:(NSString *)string;
 
