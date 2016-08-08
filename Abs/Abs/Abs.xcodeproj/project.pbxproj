@@ -17,6 +17,8 @@
 		2F9FAAFA1970D95700DFB77C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F9FAAF71970D95700DFB77C /* Images.xcassets */; };
 		6023DF221CA3B66200F83554 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6023DF211CA3B66200F83554 /* default.png */; };
 		603C2ABD1D37EB5100BC38F1 /* cmbkeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 603C2ABC1D37EB5100BC38F1 /* cmbkeyboard.framework */; };
+		603C2AC01D38AFC300BC38F1 /* CMBPayPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 603C2ABF1D38AFC300BC38F1 /* CMBPayPlugin.m */; };
+		603C2AC31D38BEAB00BC38F1 /* CMBModalWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 603C2AC21D38BEAB00BC38F1 /* CMBModalWebViewController.m */; };
 		606783541D336F0F000225F7 /* back_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 606783531D336F0F000225F7 /* back_arrow@2x.png */; };
 		606783571D336F60000225F7 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 606783561D336F60000225F7 /* WebViewController.m */; };
 		609807701C3B94D200BCF840 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6098070C1C3B94D200BCF840 /* AlipaySDK.bundle */; };
@@ -107,6 +109,10 @@
 		2F9FAAF71970D95700DFB77C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = images/Images.xcassets; sourceTree = "<group>"; };
 		6023DF211CA3B66200F83554 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
 		603C2ABC1D37EB5100BC38F1 /* cmbkeyboard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = cmbkeyboard.framework; path = ../../ThirdPart/CMBPay/cmbkeyboard.framework; sourceTree = "<group>"; };
+		603C2ABE1D38AFC300BC38F1 /* CMBPayPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMBPayPlugin.h; sourceTree = "<group>"; };
+		603C2ABF1D38AFC300BC38F1 /* CMBPayPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMBPayPlugin.m; sourceTree = "<group>"; };
+		603C2AC11D38BEAB00BC38F1 /* CMBModalWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMBModalWebViewController.h; sourceTree = "<group>"; };
+		603C2AC21D38BEAB00BC38F1 /* CMBModalWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMBModalWebViewController.m; sourceTree = "<group>"; };
 		606783531D336F0F000225F7 /* back_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_arrow@2x.png"; sourceTree = "<group>"; };
 		606783551D336F60000225F7 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		606783561D336F60000225F7 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
@@ -551,6 +557,8 @@
 		60BE4D8C1D36539F0010385E /* CMBPay */ = {
 			isa = PBXGroup;
 			children = (
+				603C2AC11D38BEAB00BC38F1 /* CMBModalWebViewController.h */,
+				603C2AC21D38BEAB00BC38F1 /* CMBModalWebViewController.m */,
 				60BE4D8E1D36539F0010385E /* CMBWebViewController.h */,
 				60BE4D8F1D36539F0010385E /* CMBWebViewController.m */,
 			);
@@ -728,6 +736,8 @@
 		60E767B61BF5E66D00CCAA95 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				603C2ABE1D38AFC300BC38F1 /* CMBPayPlugin.h */,
+				603C2ABF1D38AFC300BC38F1 /* CMBPayPlugin.m */,
 				60FD3A891D20FA9900DAF212 /* SystemPlugin.h */,
 				60FD3A8A1D20FA9900DAF212 /* SystemPlugin.m */,
 				609807841C3B996900BCF840 /* AliPlugin.h */,
@@ -895,6 +905,7 @@
 				60D7186F1BF18AD5001524C9 /* WXApiRequestHandler.m in Sources */,
 				609807781C3B94D200BCF840 /* NSDataEx.m in Sources */,
 				60F1C4F41B7E6DBE0043FEA1 /* AppDelegate.m in Sources */,
+				603C2AC31D38BEAB00BC38F1 /* CMBModalWebViewController.m in Sources */,
 				609807861C3B996900BCF840 /* AliPlugin.m in Sources */,
 				60E767B21BF5830700CCAA95 /* WXUtil.mm in Sources */,
 				6098077B1C3B94D200BCF840 /* RSADataVerifier.m in Sources */,
@@ -919,6 +930,7 @@
 				60BE4D911D36539F0010385E /* CMBWebViewController.m in Sources */,
 				60DE9B221C00CBD700B671EA /* QQPlugin.m in Sources */,
 				609807721C3B94D200BCF840 /* APAuthV2Info.m in Sources */,
+				603C2AC01D38AFC300BC38F1 /* CMBPayPlugin.m in Sources */,
 				60E4A0E91B8C55D100F57174 /* CPModalWebViewController.m in Sources */,
 				60D718711BF18AD5001524C9 /* GetMessageFromWXResp+responseWithTextOrMediaMessage.m in Sources */,
 				60E4A0DF1B8C54D000F57174 /* SVWebViewControllerActivity.m in Sources */,

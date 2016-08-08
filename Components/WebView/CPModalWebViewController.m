@@ -1,10 +1,3 @@
-//
-//  SVModalWebViewController.m
-//
-//  Created by Oliver Letterer on 13.08.11.
-//  Copyright 2011 Home. All rights reserved.
-//
-//  https://github.com/samvermette/SVWebViewController
 
 #import "CPModalWebViewController.h"
 #import "CPWebViewController.h"

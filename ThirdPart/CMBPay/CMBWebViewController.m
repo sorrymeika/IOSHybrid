@@ -35,7 +35,9 @@
 
 - (void)initWebView{
     
-    UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    
+    
     webView.delegate = self;
     [self.view addSubview:webView];
     self.webView = webView;
@@ -67,7 +69,7 @@
     self.backItem = backItem;
     [backView addSubview:backItem];
     
-    UIButton * closeItem = [[UIButton alloc]initWithFrame:CGRectMake(44+12, 0, 44, 44)];
+    UIButton * closeItem = [[UIButton alloc]initWithFrame:CGRectMake(44+5, 0, 44, 44)];
     [closeItem setTitle:@"关闭" forState:UIControlStateNormal];
     [closeItem setTitleColor:[UIColor colorWithRed:0.000 green:0.502 blue:1.000 alpha:1.000] forState:UIControlStateNormal];
     [closeItem addTarget:self action:@selector(clickedCloseItem:) forControlEvents:UIControlEventTouchUpInside];
@@ -94,6 +96,8 @@
 #pragma mark - clickedCloseItem
 - (void)clickedCloseItem:(UIButton *)btn{
     [self.navigationController popViewControllerAnimated:YES];
+    
+    [self.navigationController dismissViewControllerAnimated:YES completion:NULL];
 }
 
 #pragma mark - UIWebViewDelegate
@@ -120,9 +124,22 @@
         [self.view addGestureRecognizer:myTap]; //这个可以加到任何控件上,比如你只想响应WebView，我正好填满整个屏幕
         myTap.delegate = self;
         myTap.cancelsTouchesInView = NO;
+        self.activityView.hidden = YES;
+        return NO;
+        
+    } else if ([request.URL.host isCaseInsensitiveEqualToString:@"m.abs.cn"]) {
+        [self clickedCloseItem:nil];
+        return NO;
     }
     
     return YES;
+}
+
+-(void)handleSingleTap:(UITapGestureRecognizer *)sender{
+    CGPoint gesturePoint = [sender locationInView:self.view];
+    NSLog(@"handleSingleTap!gesturePoint:%f,y:%f",gesturePoint.x,gesturePoint.y);
+    //[_secKeyboard hideKeyboard];
+    
 }
 
 

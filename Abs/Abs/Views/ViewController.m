@@ -19,7 +19,7 @@
 #import "AliPlugin.h"
 #import "HybridAction.h"
 #import "SystemPlugin.h"
-
+#import "CMBPayPlugin.h"
 
 @interface ViewController (){
     NSDictionary *plugins;
@@ -82,7 +82,8 @@
               @"getLocation": [[LocationPlugin alloc] initWithHybridView:hybridView],
               @"pickImage": [[ImagePlugin alloc] initWithHybridView:hybridView],
               @"qq": [[QQPlugin alloc] initWithHybridView:hybridView],
-              @"system": [[SystemPlugin alloc] initWithHybridView:hybridView]
+              @"system": [[SystemPlugin alloc] initWithHybridView:hybridView],
+              @"cmbpay": [[CMBPayPlugin alloc] initWithHybridView:hybridView]
             };
 
     
