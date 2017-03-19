@@ -7,7 +7,9 @@
 //
 #import "../HybridAction.h"
 
-@interface SystemPlugin:HybridAction {}
+#import <MessageUI/MessageUI.h>
+
+@interface SystemPlugin:HybridAction<MFMessageComposeViewControllerDelegate> {}
 
 
 @end

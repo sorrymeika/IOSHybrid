@@ -21,7 +21,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>13</string>
+	<string>14</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -58,7 +58,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.3.1</string>
+	<string>1.3.2</string>
 	<key>CMBPublicKey</key>
 	<string>HwhR4Kwd9L4DCBzaWf9fYSh+ozaEHk7uLbnyO+mnvWTgpZQDmhhZQYcs4ntRARzA4D6S+4swUOqEIOZGdljNa0vBaUuX/9Dlv/WCw+3bYrt1WviUuXrNjq6zHr2YvVMRxGtzXyXC7edschM4bYbvz6V9UDLtj1KZ4CkvrOPOWm5ddqt5NvHN1X33vuNY1q+4u9NO+fenlBmp2b8mzrCH9rDRjF9mhCd8InCS+69kwsvVDlL51iuiu8N7DxcodTbP9FWlp7J9ItXhkZCE2IiCSBtanFEXTipdl3OnHRTn6uUBAZUwbpz0lzSlr4Jh2rfWT9qrmmQXcJ/DS3DUG/4+UQ==</string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -75,19 +75,25 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>我们需要您的同意才能使用相机拍摄</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>我们要使用您的地址位置以推荐附近门店</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>我们需要您的同意才能读取媒体资料库</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
 	</array>
 	<key>UIStatusBarHidden</key>
-	<false/>
+	<true/>
 	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleDefault</string>
+	<string>UIStatusBarStyleLightContent</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

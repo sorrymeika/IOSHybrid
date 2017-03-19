@@ -20,6 +20,7 @@
 #import "HybridAction.h"
 #import "SystemPlugin.h"
 #import "CMBPayPlugin.h"
+#import "AssetsPlugin.h"
 
 @interface ViewController (){
     NSDictionary *plugins;
@@ -48,57 +49,44 @@
     return YES;// default is NO
 }
 
--(UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
-    
-}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    [self setNeedsStatusBarAppearanceUpdate];
-    
     //初始化webview
     hybridView = [[UIHybridView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    [self.view addSubview:hybridView];
-    [hybridView setBackgroundColor:[UIColor whiteColor]];
-    hybridView.scalesPageToFit =YES;
-    hybridView.delegate = self;
+    
+    UIView *webView = hybridView.webView;
+    [self.view addSubview: webView];
+   
     hybridView.hybridDelegate=self;
     hybridView.viewController=self;
     
-    hybridView.scrollView.delegate = self;
-    
-    //禁用UIWebView拖拽
-    [(UIScrollView *)[[hybridView subviews] objectAtIndex:0] setBounces:NO];
-    [(UIScrollView *)[[hybridView subviews] objectAtIndex:0] setShowsVerticalScrollIndicator:NO];
     
     plugins=@{
               @"openInApp":[[BrowserPlugin alloc] initWithHybridView:hybridView],
               @"wx": [[WXPlugin alloc] initWithHybridView:hybridView],
               @"ali": [[AliPlugin alloc] initWithHybridView:hybridView],
               @"getLocation": [[LocationPlugin alloc] initWithHybridView:hybridView],
-              @"pickImage": [[ImagePlugin alloc] initWithHybridView:hybridView],
+              @"image": [[ImagePlugin alloc] initWithHybridView:hybridView],
               @"qq": [[QQPlugin alloc] initWithHybridView:hybridView],
               @"system": [[SystemPlugin alloc] initWithHybridView:hybridView],
-              @"cmbpay": [[CMBPayPlugin alloc] initWithHybridView:hybridView]
+              @"cmbpay": [[CMBPayPlugin alloc] initWithHybridView:hybridView],
+              @"assets": [[AssetsPlugin alloc] initWithHybridView:hybridView]
             };
 
     
-    //[ViewUtil loadDocument:hybridView url:@"http://www.baidu.com/"];
-    [ViewUtil loadDocument:hybridView url:@"index.html"];
-    //[ViewUtil loadDocument:hybridView url:@"http://192.168.0.104:5559/"];
-    //[ViewUtil loadDocument:hybridView url:@"http://10.0.74.50:5559/"];
+    [hybridView loadUrl:@"files/index.html"];
+    
+    //[hybridView loadUrl:@"http://www.baidu.com/"];
+    //[hybridView loadUrl:@"http://192.168.0.104:5559/"];
+    //[hybridView loadUrl:@"http://10.0.78.168:5559/"];
     
     NSLog(@"width %f",[[UIScreen mainScreen] bounds].size.width);
 }
 
-
-- (UIView*)viewForZoomingInScrollView:(UIScrollView*)scrollView{ // 实现代理方法， step 3
-    return nil;
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return YES;
@@ -107,6 +95,13 @@
 
 - (void)viewDidUnload
 {
+    
+    NSString *key;
+    
+    for (key in plugins) {
+        NSLog(@"%@", key);
+    }
+    
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -141,16 +136,16 @@
     
     NSLog(@"height:%f",keyboardRect.size.height);
     
-    CGRect origionRect = hybridView.frame;
+    CGRect origionRect = hybridView.webView.frame;
     CGRect newRect = CGRectMake(origionRect.origin.x, origionRect.origin.y, origionRect.size.width, [[UIScreen mainScreen] bounds].size.height-keyboardRect.size.height);
-    hybridView.frame = newRect;
+    hybridView.webView.frame = newRect;
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
     // 获取info同上面的方法
     // 你的操作，如键盘移除，控制视图还原等
     
-    hybridView.frame = [[UIScreen mainScreen] bounds];
+    hybridView.webView.frame = [[UIScreen mainScreen] bounds];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -163,6 +158,10 @@
     
     NSString *method = [command objectForKey:@"method"];
     HybridAction *plugin = [plugins objectForKey:method];
+    
+    NSLog(@"execute %@",method);
+
+    
     if (plugin) {
         [plugin execute:command];
         return;
@@ -170,24 +169,31 @@
     
     NSString *callback = [command objectForKey:@"callback"];
     
-    if ([method isEqualToString:@"share"]) {
+    if ([method isEqualToString:@"statusBar"]) {
         
+        NSString *style=[command objectForKey:@"params"];
+        
+        
+        if ([style isEqualToString:@"dark"]||[style isEqualToString:@"1"]) {
+
+            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+        } else {
+            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+        }
+        
+        //[self setNeedsStatusBarAppearanceUpdate];
         
     } else if  ([method isEqualToString:@"open"]) {
         NSString *params=[command objectForKey:@"params"];
-        NSLog(@"%@",params);
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:params]];
         
     } else if ([method isEqualToString:@"getDeviceToken"]){
         NSString *key=@"DeviceToken";
         NSData *token= [[NSUserDefaults standardUserDefaults]objectForKey:key];
         
-        NSString *params=@"";
-        if (token) {
-            params=[@"" stringByAppendingFormat:@"'%@'",token];
-        }
-        
-        [self hybridCallback:callback params:params];
+        [hybridView callback:callback params:@{
+                                               @"token":token
+                                               }];
         
     } else if ([method isEqualToString:@"post"]) {
         
@@ -199,22 +205,17 @@
         NSLog(@"start upload %@",url);
         
         [HttpUtil post:url data:data files:files completion:^(NSString *result){
-            [self hybridCallback:callback params:result];
+            [hybridView callbackWithString:callback params:result];
         }];
         
     } else if ([method isEqualToString:@"getRect"]) {
-        CGRect rect = [webView frame];
-        [self hybridCallback:callback params:[@"" stringByAppendingFormat:@"%f,%f",rect.size.width,rect.size.height]];
+        CGRect rect = [webView.webView frame];
+        
+        [hybridView callbackWithString:callback params:[@"" stringByAppendingFormat:@"%f,%f",rect.size.width,rect.size.height]];
         
     }
 }
 
--(void)hybridCallback:(NSString *)callback params:(NSString *)params
-{
-    NSLog(@"window.hybridFunctions.%@(%@);",callback,params);
-    
-    [hybridView stringByEvaluatingJavaScriptFromString:[@"window.hybridFunctions." stringByAppendingFormat:@"%@(%@);",callback,params]];
-}
 
 -(NSString*)toJsString:(NSString *)s
 {
@@ -229,8 +230,11 @@
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
-    NSLog(@"stop");
-    [hybridView stringByEvaluatingJavaScriptFromString:@"app_trigger(\"motion\")"];
+    if (motion ==UIEventSubtypeMotionShake )
+    {
+        NSLog(@"stop");
+        [hybridView evaluateJavaScript:@"app_trigger(\"motion\")"];
+    }
 }
 
 - (void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event

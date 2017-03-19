@@ -6,8 +6,8 @@
 //  Copyright © 2017年 Miku. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "../HybridAction.h"
 
-@interface ContactPlugin : NSObject
+@interface ContactPlugin : HybridAction {}
 
 @end

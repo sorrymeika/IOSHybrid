@@ -1,23 +1,17 @@
 
-#import "CPModalWebViewController.h"
-#import "CPWebViewController.h"
+#import "ModalWebViewController.h"
+#import "WebViewController.h"
+#import "DismissTransition.h"
+#import "PresentTransition.h"
 
-@interface CPModalWebViewController ()
+@interface ModalWebViewController ()
 
-@property (nonatomic, strong) CPWebViewController *webViewController;
-
-@end
-
-@interface CPWebViewController (DoneButton)
-
-- (void)doneButtonTapped:(id)sender;
+@property (nonatomic, strong) WebViewController *webViewController;
 
 @end
 
 
-@implementation CPModalWebViewController
-
-#pragma mark - Initialization
+@implementation ModalWebViewController
 
 
 - (instancetype)initWithAddress:(NSString*)urlString {
@@ -29,35 +23,29 @@
 }
 
 - (instancetype)initWithURLRequest:(NSURLRequest *)request {
-    self.webViewController = [[CPWebViewController alloc] initWithURLRequest:request];
-    if (self = [super initWithRootViewController:self.webViewController]) {
-        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"关闭" style:UIBarButtonItemStyleDone
-                                                                      target:self.webViewController
-                                                                      action:@selector(doneButtonTapped:)];
-        
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-            self.webViewController.navigationItem.leftBarButtonItem = doneButton;
-        else
-            self.webViewController.navigationItem.rightBarButtonItem = doneButton;
-    }
+    self.webViewController = [[WebViewController alloc] initWithURLRequest:request];
+    
+    self = [super initWithRootViewController:self.webViewController];
+    
+    self.transitioningDelegate = self;
+    
     return self;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:NO];
+    [super viewWillAppear:animated];
     
     self.webViewController.title = self.title;
     self.navigationBar.tintColor = self.barsTintColor;
 }
 
-#pragma mark - Delegate
-
-- (void)setWebViewDelegate:(id<UIWebViewDelegate>)webViewDelegate {
-    self.webViewController.delegate = webViewDelegate;
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source{
+    return [[PresentTransition alloc] init];
 }
 
-- (id<UIWebViewDelegate>)webViewDelegate {
-    return self.webViewController.delegate;
+// dismiss动画
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
+    return [[DismissTransition alloc] init];
 }
 
 @end

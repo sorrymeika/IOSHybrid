@@ -26,7 +26,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = @"扫一扫";
+    [self initNaviBar];
     
     _device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     
@@ -76,15 +76,6 @@
     qrRectView.delegate = self;
     [self.view addSubview:qrRectView];
     
-    UIButton *openBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    openBtn.frame = CGRectMake(260, 0, 50, 50);
-    [openBtn setTitle:@"开灯" forState:UIControlStateNormal];
-    [openBtn addTarget:self action:@selector(openFlashlight:) forControlEvents:UIControlEventTouchUpInside];
-    [openBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    
-    UIBarButtonItem *openItem = [[UIBarButtonItem alloc] initWithCustomView:openBtn];
-    
-    self.navigationItem.rightBarButtonItem = openItem;
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(90, 65, 150, 60)];
     label.textAlignment = NSTextAlignmentCenter;
@@ -106,9 +97,62 @@
                                           cropRect.origin.x / screenWidth,
                                           cropRect.size.height / screenHeight,
                                           cropRect.size.width / screenWidth)];
-    
+}
 
+
+- (void)initNaviBar{
     
+    
+    // 设置导航栏标题属性：设置标题颜色
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
+    // 设置导航栏前景色：设置item指示色
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    // 设置导航栏半透明
+    self.navigationController.navigationBar.translucent = true;
+    
+    // 设置导航栏背景图片
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    
+    // 设置导航栏阴影图片
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    
+    self.title = @"扫一扫";
+    
+    
+    UIView * backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
+    UIButton * backItem = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 56, 44)];
+    [backItem setImage:[UIImage imageNamed:@"back_arrow"] forState:UIControlStateNormal];
+    [backItem setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 0)];
+    [backItem setTitle:@"返回" forState:UIControlStateNormal];
+    [backItem setTitleEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 0)];
+    [backItem setTitleColor:[UIColor colorWithRed:0.000 green:0.502 blue:1.000 alpha:1.000] forState:UIControlStateNormal];
+    [backItem addTarget:self action:@selector(clickedCloseItem:) forControlEvents:UIControlEventTouchUpInside];
+    [backView addSubview:backItem];
+    
+    UIBarButtonItem * leftItemBar = [[UIBarButtonItem alloc]initWithCustomView:backView];
+    self.navigationItem.leftBarButtonItem = leftItemBar;
+    
+    UIButton *openBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    openBtn.frame = CGRectMake(260, 0, 50, 50);
+    [openBtn setTitle:@"开灯" forState:UIControlStateNormal];
+    [openBtn addTarget:self action:@selector(openFlashlight:) forControlEvents:UIControlEventTouchUpInside];
+    [openBtn setTitleColor:[UIColor colorWithRed:0.000 green:0.502 blue:1.000 alpha:1.000] forState:UIControlStateNormal];
+    
+    UIBarButtonItem *openItem = [[UIBarButtonItem alloc] initWithCustomView:openBtn];
+    
+    self.navigationItem.rightBarButtonItem = openItem;
+}
+
+#pragma mark - clickedCloseItem
+- (void)clickedCloseItem:(UIButton *)btn{
+    
+    if ([self.navigationController.viewControllers indexOfObject:self]==0) {
+        
+        [self dismissViewControllerAnimated:YES completion:NULL];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 -(void)openFlashlight:(UIButton *)sender
@@ -164,16 +208,20 @@
         stringValue = metadataObject.stringValue;
     }
     
-    NSLog(@" =============%@",stringValue);
+    NSLog(@"QRScan result: %@",stringValue);
     
     if (self.qrUrlBlock) {
         self.qrUrlBlock(stringValue);
     }
     
-    WebViewController *scanVC = [[WebViewController alloc]init];
-    scanVC.path = stringValue;
-    [self.navigationController pushViewController:scanVC animated:YES];
-    [_session startRunning];
+    if (self.delegate) {
+        [self.delegate scanQRCodeSuccess:self result:stringValue];
+    }
+    
+//    WebViewController *scanVC = [[WebViewController alloc]initWithAddress:stringValue];
+//    
+//    [self.navigationController pushViewController:scanVC animated:YES];
+//    [_session startRunning];
 }
 
 @end

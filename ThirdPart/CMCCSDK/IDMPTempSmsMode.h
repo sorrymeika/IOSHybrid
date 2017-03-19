@@ -15,6 +15,6 @@ typedef void (^accessBlock)(NSDictionary *paraments);
 
 - (void)getSmsCodeWithUserName:(NSString*)userName busiType:(NSString *)busiType successBlock:(accessBlock)successBlock failBlock:(accessBlock)failBlock;
 
-- (void)getTMKSWithUserName:(NSString *)userName messageCode:(NSString *)messageCode successBlock:(accessBlock)successBlock failBlock:(accessBlock)failBlock;
+-(void)getTMKSWithSipInfo: (NSString *)sipinfo UserName:(NSString *)userName messageCode:(NSString *)messageCode successBlock:(accessBlock)successBlock failBlock:(accessBlock)failBlock;
 
 @end

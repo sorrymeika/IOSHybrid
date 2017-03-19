@@ -133,13 +133,14 @@ typedef void (^accessBlock)(NSDictionary *paraments);
 
 
 /**
- *	接口用于判断当前手机号码是否为本机号码(请在子线程中调用)
+ *	接口用于判断当前手机号码是否为本机号码
  *
  *  @param userName   手机号码；
  *
- *  @return YES判断是本机号码
+ *  @param successBlock 手机号码变化做的操作，由应用开发者自行实现。
+ *  @param failBlock    手机号码不变(包括无法检测)的操作，由应用开发者自行实现。
  */
-- (BOOL)checkIsLocalNumberWith:(NSString *)userName;
+-(void)checkIsLocalNumberWith:(NSString *)userName finishBlock:(accessBlock) successBlock failBlock:(accessBlock )failBlock;
 
 
 /**
@@ -151,7 +152,7 @@ typedef void (^accessBlock)(NSDictionary *paraments);
  *  @param successBlock 初始化成功时调用，由应用开发者自行实现。
  *  @param failBlock    初始化失败时调用，由应用开发者自行实现。
  */
-- (void)initWithAppid:(NSString *)appid Appkey:(NSString *)appkey TimeoutInterval:(float)aTime finishBlock:(accessBlock)successBlcok failBlock:(accessBlock)failBlock;
+- (void)validateWithAppid:(NSString *)appid appkey:(NSString *)appkey timeoutInterval:(float)aTime   finishBlock:(accessBlock)successBlcok failBlock:(accessBlock)failBlock;
 
 
 @end

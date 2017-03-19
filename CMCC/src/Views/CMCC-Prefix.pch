@@ -12,3 +12,26 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 #endif
+
+
+
+
+#ifndef SyncLibraryDemo_Macro_h
+#define SyncLibraryDemo_Macro_h
+
+#ifndef __OPTIMIZE__
+#   define DLog(fmt, ...) {NSLog((@"\n%s [Line %d]\n " fmt @"\n\n"), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);}
+#   define DLogObject(object) DLog("%@", object);
+#   define ELog(err) {if(err) DLog(@"%@", err)}
+#else
+#   define DLog(...)
+#   define DLogObject(object)
+#   define ELog(err)
+#endif
+
+
+#ifdef __OPTIMIZE__
+#define NSLog(...)
+#endif
+
+#endif

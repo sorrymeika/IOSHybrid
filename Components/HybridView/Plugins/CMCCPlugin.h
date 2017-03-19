@@ -7,7 +7,7 @@
 //
 #import "../HybridAction.h"
 
-@interface SystemPlugin:HybridAction {}
+@interface CMCCPlugin:HybridAction {}
 
 
 @end

@@ -2,7 +2,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPModalWebViewController : UINavigationController
+@interface ModalWebViewController : UINavigationController<UIViewControllerTransitioningDelegate>
 
 - (instancetype)initWithAddress:(NSString*)urlString;
 - (instancetype)initWithURL:(NSURL *)URL;

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 Miku. All rights reserved.
 //
 #import "BrowserPlugin.h"
-#import "CPModalWebViewController.h"
+#import "ModalWebViewController.h"
 
 @interface BrowserPlugin (){
     
@@ -17,9 +17,12 @@
 
 
 -(void)execute:(NSDictionary *)command{
-    NSString * url=[command objectForKey:@"params"];
+    NSDictionary *params = [command objectForKey:@"params"];
     
-    CPModalWebViewController *webC = [[CPModalWebViewController alloc] initWithAddress:url];
+    NSString * url = [params objectForKey:@"url"];
+    NSString * title = [params objectForKey:@"title"];
+    
+    ModalWebViewController *webC = [[ModalWebViewController alloc] initWithAddress:url];
     
     [_hybridView.viewController presentViewController:webC animated:YES completion:^{}];
 }

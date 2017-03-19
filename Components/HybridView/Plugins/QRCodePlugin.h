@@ -6,8 +6,9 @@
 //  Copyright © 2017年 Miku. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "../HybridAction.h"
+#import "QRCodeViewController.h"
 
-@interface QRCodePlugin : NSObject
+@interface QRCodePlugin : HybridAction<QRCodeDelegate>
 
 @end

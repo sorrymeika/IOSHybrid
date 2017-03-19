@@ -22,6 +22,25 @@
 
 @implementation WebViewController
 
+
+- (instancetype)initWithURLRequest:(NSURLRequest*)request {
+    self = [super init];
+    if (self) {
+        self.request = request;
+    }
+    return self;
+}
+
+- (instancetype)initWithAddress:(NSString *)urlString {
+    return [self initWithURL:[NSURL URLWithString:urlString]];
+}
+
+
+- (instancetype)initWithURL:(NSURL*)pageURL {
+    return [self initWithURLRequest:[NSURLRequest requestWithURL:pageURL]];
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -32,7 +51,7 @@
     
 }
 
-- (void)initWebView{
+- (void)initWebView {
     
     UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     webView.delegate = self;
@@ -48,9 +67,11 @@
     [self.view addSubview:activityView];
     
     //清除UIWebView的缓存
-    [[NSURLCache sharedURLCache] removeAllCachedResponses];
+    // [[NSURLCache sharedURLCache] removeAllCachedResponses];
     
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0]];
+    //[NSURLRequest requestWithURL:[NSURL URLWithString:self.url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0]
+    
+    [self.webView loadRequest:self.request];
 }
 
 - (void)initNaviBar{
@@ -76,7 +97,7 @@
     
     UIBarButtonItem * leftItemBar = [[UIBarButtonItem alloc]initWithCustomView:backView];
     self.navigationItem.leftBarButtonItem = leftItemBar;
-
+    
 }
 
 
@@ -92,7 +113,13 @@
 
 #pragma mark - clickedCloseItem
 - (void)clickedCloseItem:(UIButton *)btn{
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    if ([self.navigationController.viewControllers indexOfObject:self]==0) {
+        
+        [self dismissViewControllerAnimated:YES completion:NULL];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 #pragma mark - UIWebViewDelegate

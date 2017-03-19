@@ -38,10 +38,10 @@ static NSTimeInterval kQrLineanimateDuration = 0.02;
         NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:kQrLineanimateDuration target:self selector:@selector(show) userInfo:nil repeats:YES];
         [timer fire];
     }
-    
-    if (!qrMenu) {
-        [self initQrMenu];
-    }
+    // 二维码／条形码切换菜单
+    // if (!qrMenu) {
+    //      [self initQrMenu];
+    // }
 }
 
 - (void)initQRLine {
@@ -61,7 +61,7 @@ static NSTimeInterval kQrLineanimateDuration = 0.02;
     CGFloat height = 80;
     CGFloat width = self.bounds.size.width;
     qrMenu = [[QRMenu alloc] initWithFrame:CGRectMake(0, self.bounds.size.height - height, width, height)];
-    qrMenu.backgroundColor = [UIColor yellowColor];
+    // qrMenu.backgroundColor = [UIColor yellowColor];
     [self addSubview:qrMenu];
     
     __weak typeof(self)weakSelf = self;

@@ -8,20 +8,28 @@
 
 @protocol UIHybridViewDelegate;
 
-@interface UIHybridView:UIWebView {
+@interface UIHybridView:NSObject<UIScrollViewDelegate> {
 }
 
--(void)loadRequestWidthAddress:(NSString *)address;
 
--(void)webView:(UIWebView *)sender runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(id)frame;
 
 @property (nonatomic, assign) id<UIHybridViewDelegate> hybridDelegate;
 @property (nonatomic, retain) UIViewController* viewController;
+@property (nonatomic, retain) UIView* webView;
+
+@property NSString *WEBVIEW_TYPE;
+
+
+-(UIHybridView *)initWithFrame:(CGRect)frame;
+
+-(void)loadUrl:(NSString *)url;
+
+-(void)evaluateJavaScript:(NSString *)js;
 
 -(void)callback:(NSString *)callback params:(NSDictionary*) params;
+-(void)callbackWithString:(NSString *)callback params:(NSString*) params;
 @end
 
 @protocol UIHybridViewDelegate
 - (void)callNativeApi:(UIHybridView*)view command:(NSDictionary *)command;
 @end
-

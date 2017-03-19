@@ -12,7 +12,7 @@
 
 
 + (UIImage *) getImage:(NSString *)src {
-
+    
     NSURL *url = [NSURL URLWithString:src];
     return [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
 }
@@ -68,12 +68,11 @@
         {
             //得到当前key
             NSString *key=[keys objectAtIndex:i];
-            NSString *path=[files objectForKey:key];
             
             ////添加分界线，换行
             [body appendFormat:@"%@\r\n",MPboundary];
             //声明pic字段，文件名为boris.png
-            [body appendFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n",key,path];
+            [body appendFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@.jpg\"\r\n",key,key];
             //声明上传文件的格式
             [body appendFormat:@"Content-Type: application/octet-stream\r\n\r\n"];
             
@@ -85,12 +84,17 @@
         {
             //得到当前key
             NSString *key=[keys objectAtIndex:i];
-            NSString *path=[files objectForKey:key];
             
-            //将文件的data加入
-            NSData *buffer=[NSData dataWithContentsOfFile:path];
-            //NSData *data=[path dataUsingEncoding:NSUTF8StringEncoding];
-            //NSLog(@"%d",data.length);
+            NSObject *obj = [files objectForKey:key];
+            
+            NSData *buffer;
+            
+            if ([obj isKindOfClass:[NSData class]]) {
+                buffer = (NSData *) obj;
+            } else {
+                NSString *path= (NSString *)obj;
+                buffer=[NSData dataWithContentsOfFile:path];
+            }
             
             [myRequestData appendData:buffer];
         }

@@ -8,9 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol QRCodeDelegate <NSObject>
+
+-(void)scanQRCodeSuccess:(UIViewController *)viewController result:(NSString *)result;
+
+@end
+
+
 typedef void(^QRUrlBlock)(NSString *url);
-@interface QRCodeViewController : UIViewController
+@interface QRCodeViewController : UIViewController<QRCodeDelegate>
 
 @property (nonatomic, copy) QRUrlBlock qrUrlBlock;
+
+@property (nonatomic, weak) id<QRCodeDelegate> delegate;
 
 @end

@@ -56,6 +56,7 @@
     
     [self.window makeKeyAndVisible];
     
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     
     //向微信注册
@@ -119,6 +120,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    NSLog(@"%@",self.viewController);
 }
 
 

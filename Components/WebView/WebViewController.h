@@ -10,6 +10,13 @@
 
 @interface WebViewController : UIViewController
 
-@property (nonatomic, copy) NSString * url;
+@property (nonatomic, copy) NSURLRequest *request;
+
+
+- (instancetype)initWithAddress:(NSString *)urlString;
+
+- (instancetype)initWithURL:(NSURL*)pageURL;
+
+- (instancetype)initWithURLRequest:(NSURLRequest *)request;
 
 @end

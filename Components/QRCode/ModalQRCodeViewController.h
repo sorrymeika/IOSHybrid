@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ModalQRCodeViewController : NSObject
+#import "QRCodeViewController.h"
+
+@interface ModalQRCodeViewController : UINavigationController<UIViewControllerTransitioningDelegate>
+
+@property (nonatomic, strong) QRCodeViewController *viewController;
 
 @end
