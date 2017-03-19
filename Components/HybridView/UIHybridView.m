@@ -140,10 +140,10 @@
         
         scrollView.scrollEnabled=NO;
         
+        wkWebView.UIDelegate = wkWebView;
         
         [wkWebView evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id result, NSError *error) {
-            
-            NSLog(@"result %@", result);
+            NSLog(@"%@", result);
         }];
         
     } else {

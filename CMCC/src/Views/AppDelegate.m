@@ -48,20 +48,19 @@
     UIWebView* webView = [[UIWebView alloc] initWithFrame:CGRectZero];
     NSString* secretAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
     
-    NSString *newUagent = [NSString stringWithFormat:@"%@/SLApp %@",secretAgent,[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
+    NSDictionary *infoDict= [[NSBundle mainBundle] infoDictionary];
+    
+    NSString *newUagent = [NSString stringWithFormat:@"%@/SLApp %@(%@)",secretAgent,
+                           [infoDict objectForKey:@"CFBundleVersion"],[infoDict objectForKey:@"CFBundleShortVersionString"]];
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent":newUagent}];
-    
-    NSLog(@"%@",newUagent);
     
     // Override point for customization after application launch.
     self.viewController = [[ViewController alloc] init];
     self.window.rootViewController = self.viewController;
     
     //    NSDictionary *dict = @{
-    //
     //                           };
-    //
     //    NSLog(@"%d",[[dict objectForKey:@"test"] intValue]?:-1);
     //    
     
